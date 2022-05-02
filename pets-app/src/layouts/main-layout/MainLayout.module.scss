@@ -1,5 +1,6 @@
 .page {
   height: 100vh;
+  background-color: var(--background-color);
 }
 
 .container {
@@ -20,14 +21,6 @@
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
-
-.lightMain {
-  background-color: #F8F8F7;
-}
-
-.darkMain {
-  background-color: #1D1D1D;
 }
 
 .wrapper {

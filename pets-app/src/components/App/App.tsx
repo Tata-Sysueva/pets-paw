@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '../../layouts/main-layout/MainLayout';
-import {ThemeProvider} from '../../ThemeContext';
+import {ThemeProvider} from '../../contexts/ThemeContext';
 
 function App() {
   return (

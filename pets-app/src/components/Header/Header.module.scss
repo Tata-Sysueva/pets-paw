@@ -5,17 +5,14 @@
 }
 
 .button {
+  position: relative;
   width: 44px;
   height: 24px;
 
   border: none;
   border-radius: 50px;
   outline: none;
-}
-
-.buttonLight {
-  position: relative;
-  background: #FBE0DC;
+  background-color: var(--button-bgc-color);
 
   &:before{
     position: absolute;
@@ -25,8 +22,8 @@
     width: 24px;
     height: 24px;
 
-    background-color: #FFFFFF;
-    background-image: url('../../assets/icons/eye.svg');
+    background-color: var(--icon-bgc-color);
+    background-image: var(--icon-url);
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50px;
@@ -37,49 +34,13 @@
   &:after {
     position: absolute;
     top: 5px;
-    left: 23px;
+    left: var(--button-left);
 
     width: 16px;
     height: 16px;
 
-    background: #FF868E;
+    background-color: var(--button-color) ;
     border-radius: 40px;
-
-    content: '';
-  }
-}
-
-.buttonDark {
-  position: relative;
-  background-color: rgba(255, 134, 142, 0.2);
-
-  &:after {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-
-    width: 16px;
-    height: 16px;
-
-    background: #FF868E;
-    border-radius: 40px;
-
-    content: '';
-  }
-
-  &:before{
-    position: absolute;
-    top: 0;
-    left: -30px;
-
-    width: 24px;
-    height: 24px;
-
-    background-color: rgba(255, 255, 255, 0.05);
-    background-image: url('../../assets/icons/eye-dark.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50px;
 
     content: '';
   }

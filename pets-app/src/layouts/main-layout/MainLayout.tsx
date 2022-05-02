@@ -1,23 +1,13 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import Home from '../../pages/Home/Home';
 import styles from './MainLayout.module.scss';
-import {useTheme} from '../../ThemeContext';
-import classNames from 'classnames';
 import Promo from '../../pages/Promo/Promo';
 
-function MainLayout({ children }: { children?: ReactNode}) {
-  const lightTheme = useTheme();
-
-  const MainClasses = classNames(
-    styles.page,
-    {[styles.lightMain]: lightTheme},
-    {[styles.darkMain]: !lightTheme},
-  );
-
+function MainLayout() {
   return (
-    <main className={MainClasses}>
+    <main className={styles.page}>
       <div className={styles.container}>
-        <h1 className={styles.visuallyHidden}>PetsPaw site</h1>
+        <h1 className='visually-hidden'>PetsPaw site</h1>
         <Home />
         <div className={styles.wrapper}>
           <Promo />

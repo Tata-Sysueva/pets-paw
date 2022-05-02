@@ -9,14 +9,7 @@
   font-weight: 500;
   line-height: 58px;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.lightTitle {
-  color: #F8F8F7;
-}
-
-.darkTitle {
-  color: #1D1D1D;
+  color: var(--primary-text);
 }
 
 .text {

@@ -1,25 +1,24 @@
 import React from 'react';
-import {useTheme, useThemeUpdate} from '../../ThemeContext';
+import {useTheme} from '../../contexts/ThemeContext';
+import { ReactComponent as LightLogo } from '../../assets/icons/logo.svg';
+import { ReactComponent as DarkLogo } from '../../assets/icons/logo-dark.svg';
+
 import styles from './Header.module.scss';
-import Logo from '../logo/logo';
-import classNames from 'classnames';
 
 function Header() {
-  const lightTheme = useTheme();
-  const toggleTheme = useThemeUpdate();
+  const {theme, updateTheme} = useTheme();
+  const Logo = theme === 'light' ? <LightLogo /> : <DarkLogo />;
 
-  const buttonClasses = classNames(
-    styles.button,
-    {[styles.buttonLight] : lightTheme},
-    {[styles.buttonDark]: !lightTheme}
-  );
+  React.useEffect(() => {
+    document.body.dataset.theme = theme;
+  }, [theme]);
 
   return  (
     <header className={styles.header}>
       <a href="/#">
-        <Logo />
+        {Logo}
       </a>
-      <button onClick={toggleTheme} className={buttonClasses} />
+      <button onClick={updateTheme} className={styles.button} />
     </header>
   );
 }

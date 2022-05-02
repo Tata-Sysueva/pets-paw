@@ -8,14 +8,8 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 29px;
-}
 
-.titleLight {
-  color: #1D1D1D;
-}
-
-.titleDark {
-  color: #FFFFFF;
+  color: var(--primary-text);
 }
 
 .image {
