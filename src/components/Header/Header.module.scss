@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 80px;
+}
+
+.button {
+  position: relative;
+  width: 44px;
+  height: 24px;
+
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background-color: var(--button-bgc-color);
+
+  &:before{
+    position: absolute;
+    top: 0;
+    left: -30px;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: var(--icon-bgc-color);
+    background-image: var(--icon-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50px;
+
+    content: '';
+  }
+
+  &:after {
+    position: absolute;
+    top: 5px;
+    left: var(--button-left);
+
+    width: 16px;
+    height: 16px;
+
+    background-color: var(--button-color) ;
+    border-radius: 40px;
+
+    content: '';
+  }
+}
