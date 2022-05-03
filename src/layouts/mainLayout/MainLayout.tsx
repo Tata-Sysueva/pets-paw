@@ -1,7 +1,8 @@
 import React from 'react';
 import Home from '../../pages/Home/Home';
-import styles from './MainLayout.module.scss';
 import Promo from '../../pages/Promo/Promo';
+
+import styles from './MainLayout.module.scss';
 
 function MainLayout() {
   return (
