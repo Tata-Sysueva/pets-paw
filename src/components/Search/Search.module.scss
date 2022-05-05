@@ -1,0 +1,57 @@
+.form {
+  position: relative;
+
+  margin-right: 10px;
+}
+
+
+.field {
+  width: 470px;
+  height: 60px;
+
+  padding: 15px 10px 15px 20px;
+
+  font-size: 20px;
+  line-height: 30px;
+
+  background: var(--icon-bgc-color);
+  border: none;
+  border-radius: 20px;
+
+  &::placeholder {
+    font-size: 20px;
+    line-height: 30px;
+    color: #8C8C8C;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance:none;
+  }
+
+  &:hover {
+    border: 2px solid #FBE0DC;
+
+    &::placeholder {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+
+  &:focus {
+    border: 2px solid #FF868E;
+    outline: none;
+
+    &::placeholder {
+      color: #1D1D1D;
+    }
+  }
+}
+
+.button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}

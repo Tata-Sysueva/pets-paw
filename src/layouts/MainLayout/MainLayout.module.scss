@@ -26,13 +26,4 @@
 .wrapper {
   position: relative;
   width: 775px;
-
-  &:before {
-    position: absolute;
-    content: '';
-    display: block;
-    width: 775px;
-    height: 100%;
-    background-image: url('../../assets/image/girl-and-pet.svg');
-  }
 }

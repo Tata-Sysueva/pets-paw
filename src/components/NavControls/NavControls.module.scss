@@ -1,0 +1,17 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  margin-right: 10px;
+
+  list-style: none;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

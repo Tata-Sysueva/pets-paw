@@ -1,26 +1,28 @@
 import cn from 'classnames';
-import styles from './NavMenu.module.scss';
+import { Link } from 'react-router-dom';
+import styles from './Menu.module.scss';
+import {AppRoute} from '../../constants/constans';
 
-function NavMenu() {
+function Menu() {
   return  (
     <section>
       <h3 className={styles.title}>Lets start using The Dogs API</h3>
       <nav className={styles.navContainer}>
         <div className={styles.linkCard}>
           <div className={cn(styles.image, styles.imageVoting)}/>
-          <a href="/#" className={styles.link}>Voting</a>
+          <Link to={AppRoute.Voting} className={styles.link}>Voting</Link>
         </div>
         <div className={styles.linkCard}>
           <div className={cn(styles.image, styles.imageBreeds)}/>
-          <a href="/#" className={styles.link}>Breeds</a>
+          <Link to={AppRoute.Breeds} className={styles.link}>Breeds</Link>
         </div>
         <div className={styles.linkCard}>
           <div className={cn(styles.image, styles.imageGallery)}/>
-          <a href="/#" className={styles.link}>Gallery</a>
+          <Link to={AppRoute.Gallery} className={styles.link}>Gallery</Link>
         </div>
       </nav>
     </section>
   );
 }
 
-export default NavMenu;
+export default Menu;
