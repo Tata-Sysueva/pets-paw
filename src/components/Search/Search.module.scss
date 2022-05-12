@@ -1,27 +1,26 @@
 .form {
   position: relative;
-
+  flex-grow: 1;
   margin-right: 10px;
 }
 
-
 .field {
-  width: 470px;
-  height: 60px;
-
-  padding: 15px 10px 15px 20px;
+  width: 100%;
+  padding: 15px 50px 15px 20px;
 
   font-size: 20px;
   line-height: 30px;
 
   background: var(--icon-bgc-color);
-  border: none;
+  border: 2px solid transparent;
   border-radius: 20px;
+
+  color: var(--primary-text);
 
   &::placeholder {
     font-size: 20px;
     line-height: 30px;
-    color: #8C8C8C;
+    color: var(--secondary-text);
   }
 
   &::-webkit-search-decoration,
@@ -32,20 +31,16 @@
   }
 
   &:hover {
-    border: 2px solid #FBE0DC;
+    border: 2px solid var(--button-bgc-color);
+  }
+
+  &:focus {
+    border: 2px solid var(--accent-color);
+    outline: none;
 
     &::placeholder {
       opacity: 0;
       transition: opacity 0.3s ease;
-    }
-  }
-
-  &:focus {
-    border: 2px solid #FF868E;
-    outline: none;
-
-    &::placeholder {
-      color: #1D1D1D;
     }
   }
 }
@@ -53,5 +48,6 @@
 .button {
   position: absolute;
   right: 10px;
-  top: 10px;
+  transform: translateY(-50%);
+  top: 50%;
 }

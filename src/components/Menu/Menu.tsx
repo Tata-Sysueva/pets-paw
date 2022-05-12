@@ -1,7 +1,7 @@
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
 import styles from './Menu.module.scss';
-import {AppRoute} from '../../constants/constans';
+import {AppRoute, BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
+import Button from '../../shared/Button/Button';
 
 function Menu() {
   return  (
@@ -10,15 +10,36 @@ function Menu() {
       <nav className={styles.navContainer}>
         <div className={styles.linkCard}>
           <div className={cn(styles.image, styles.imageVoting)}/>
-          <Link to={AppRoute.Voting} className={styles.link}>Voting</Link>
+          <Button
+            size={BtnSize.Small}
+            variants={[BtnVariant.Primary]}
+            element={TypeElement.Link}
+            link={AppRoute.Voting}
+          >
+            <span>Voting</span>
+          </Button>
         </div>
         <div className={styles.linkCard}>
           <div className={cn(styles.image, styles.imageBreeds)}/>
-          <Link to={AppRoute.Breeds} className={styles.link}>Breeds</Link>
+          <Button
+            size={BtnSize.Small}
+            variants={[BtnVariant.Primary]}
+            element={TypeElement.Link}
+            link={AppRoute.Breeds}
+          >
+            <span>Breeds</span>
+          </Button>
         </div>
         <div className={styles.linkCard}>
           <div className={cn(styles.image, styles.imageGallery)}/>
-          <Link to={AppRoute.Gallery} className={styles.link}>Gallery</Link>
+          <Button
+            size={BtnSize.Small}
+            variants={[BtnVariant.Primary]}
+            element={TypeElement.Link}
+            link={AppRoute.Gallery}
+          >
+            <span>Gallery</span>
+          </Button>
         </div>
       </nav>
     </section>

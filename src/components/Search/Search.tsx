@@ -1,7 +1,7 @@
 import styles from './Search.module.scss';
 import {ReactComponent as SearchSvg} from '../../assets/icons/search.svg';
-import ButtonPrimary from '../../shared/ButtonPrimary/ButtonPrimary';
-import {BtnSize, BtnVariant} from '../../constants/constans';
+import Button from '../../shared/Button/Button';
+import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 
 
 function Search() {
@@ -15,14 +15,15 @@ function Search() {
         placeholder={'Search for breeds by name'}
       />
       <div className={styles.button}>
-        <ButtonPrimary
+        <Button
           icon={<SearchSvg />}
-          size={BtnSize.Small}
-          variant={BtnVariant.Secondary}
+          size={BtnSize.Square}
+          variants={[BtnVariant.Secondary]}
           type={'submit'}
+          element={TypeElement.Button}
         >
           <span className="visually-hidden">Search button</span>
-        </ButtonPrimary>
+        </Button>
       </div>
     </form>
   );

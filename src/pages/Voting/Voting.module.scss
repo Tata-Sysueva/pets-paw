@@ -1,5 +1,12 @@
-.container {
-  width: 775px;
-  padding-top: 30px;
-  padding-left: 65px;
+.wrapper {
+  padding: 20px;
+
+  background: var(--white);
+  border-radius: 20px;
+}
+
+.headerContent {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 20px;
 }

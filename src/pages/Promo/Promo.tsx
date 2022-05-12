@@ -8,7 +8,6 @@ function Promo() {
     <MainLayout >
       <div className={styles.wrapper}>
         <h2 className="visually-hidden">Promo</h2>
-        <div className={styles.box}/>
       </div>
     </MainLayout>
   );
