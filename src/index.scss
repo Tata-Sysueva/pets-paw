@@ -39,9 +39,10 @@ body {
 body[data-theme='light'] {
   --primary-text: #1D1D1D;
   --background-color: #F8F8F7;
+  --modal-bg-color: #F8F8F7;
   --button-bgc-color: #FBE0DC;
 
-  --icon-bgc-color: #FFFFFF;
+  --secondary-bgc-color: #FFFFFF;
   --icon-url: url('assets/icons/eye.svg');
 
   --button-left: 23px;
@@ -50,9 +51,10 @@ body[data-theme='light'] {
 body[data-theme='dark'] {
   --primary-text: #F8F8F7;
   --background-color: #1D1D1D;
+  --modal-bg-color: #282828;
   --button-bgc-color: rgba(255, 134, 142, 0.2);
 
-  --icon-bgc-color: rgba(255, 255, 255, 0.05);
+  --secondary-bgc-color: rgba(255, 255, 255, 0.05);
   --icon-url: url('assets/icons/eye-dark.svg');
 
   --button-left: 5px;

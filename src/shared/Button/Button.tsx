@@ -70,7 +70,7 @@ function Button({
             className={classes}
           >
             <span>{icon}</span>
-            <span>{children}</span>
+            {children}
           </button>
         );
       case TypeElement.Link:
@@ -81,7 +81,7 @@ function Button({
             className={classes}
           >
             <span>{icon}</span>
-            <span>{children}</span>
+            {children}
           </Link>
         );
       default:

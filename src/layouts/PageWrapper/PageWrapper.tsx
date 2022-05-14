@@ -1,10 +1,22 @@
 import {ReactNode} from 'react';
 
 import styles from './PageWrapper.module.scss';
+import cn from 'classnames';
 
-function PageWrapper({children}: {children: ReactNode}) {
+interface PageWrapperProps {
+  children: ReactNode,
+  isModal?: boolean,
+}
+
+function PageWrapper({children, isModal}: PageWrapperProps) {
+  const classes = cn(
+    styles.wrapper, {
+      [styles.isModal]: isModal,
+    }
+  );
+
   return (
-    <div className={styles.wrapper}>
+    <div className={classes}>
       {children}
     </div>
   );

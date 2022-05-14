@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {AppRoute} from '../../constants/constans';
 import {ThemeProvider} from '../../contexts/ThemeContext';
 import Promo from '../../pages/Promo/Promo';
-import {AppRoute} from '../../constants/constans';
 import Voting from '../../pages/Voting/Voting';
 import NotFoundScreen from '../../pages/NotFoundScreen/NotFoundScreen';
 import Gallery from '../../pages/Gallery/Gallery';
