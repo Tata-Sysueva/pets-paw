@@ -29,15 +29,20 @@ body {
   font-family: Jost, 'PT Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --white: #FFFFFF;
+  --accent-color: #FF868E;
+  --secondary-color: rgba(255, 134, 142, 0.2);
+  --secondary-text: #8C8C8C;
 }
 
 body[data-theme='light'] {
   --primary-text: #1D1D1D;
   --background-color: #F8F8F7;
+  --modal-bg-color: #F8F8F7;
   --button-bgc-color: #FBE0DC;
-  --button-color: #FF868E;
 
-  --icon-bgc-color: #FFFFFF;
+  --secondary-bgc-color: #FFFFFF;
   --icon-url: url('assets/icons/eye.svg');
 
   --button-left: 23px;
@@ -46,10 +51,10 @@ body[data-theme='light'] {
 body[data-theme='dark'] {
   --primary-text: #F8F8F7;
   --background-color: #1D1D1D;
+  --modal-bg-color: #282828;
   --button-bgc-color: rgba(255, 134, 142, 0.2);
-  --button-color: #FF868E;
 
-  --icon-bgc-color: rgba(255, 255, 255, 0.05);
+  --secondary-bgc-color: rgba(255, 255, 255, 0.05);
   --icon-url: url('assets/icons/eye-dark.svg');
 
   --button-left: 5px;

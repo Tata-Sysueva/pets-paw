@@ -1,6 +1,6 @@
 import React from 'react';
 import Welcome from '../../components/Welcome/Welcome';
-import NavMenu from '../../components/NavMenu/NavMenu';
+import Menu from '../../components/Menu/Menu';
 import Header from '../../components/Header/Header';
 
 import styles from './Home.module.scss';
@@ -11,7 +11,7 @@ function Home(): JSX.Element {
       <h2 className='visually-hidden'>Home page</h2>
       <Header />
       <Welcome />
-      <NavMenu />
+      <Menu />
     </section>
   );
 }
