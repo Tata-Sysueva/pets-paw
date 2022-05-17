@@ -4,6 +4,8 @@ import { ReactComponent as LightLogo } from '../../assets/icons/logo.svg';
 import { ReactComponent as DarkLogo } from '../../assets/icons/logo-dark.svg';
 
 import styles from './Header.module.scss';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../constants/constans';
 
 function Header() {
   const {theme, updateTheme} = useTheme();
@@ -15,9 +17,9 @@ function Header() {
 
   return  (
     <header className={styles.header}>
-      <a href="/#">
+      <Link to={AppRoute.Promo}>
         {logo}
-      </a>
+      </Link>
       <button onClick={updateTheme} className={styles.button} />
     </header>
   );

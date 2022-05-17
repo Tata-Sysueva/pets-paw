@@ -4,7 +4,7 @@ function Welcome() {
   return  (
     <section className={styles.section}>
       <h2 className={styles.title}>Hi, friends!</h2>
-      <p className={styles.text}>Welcome our site</p>
+      <p className={styles.text}>Welcome to our site</p>
     </section>
   );
 }
