@@ -1,0 +1,42 @@
+.modal {
+  position: fixed;
+  z-index: 99;
+  height: 100vh;
+  padding: 30px;
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.uploadPhoto {
+  left: calc(50% + 350px);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  background-color: rgba(black, 0.7);
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 540px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: var(--modal-bg-color);
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+

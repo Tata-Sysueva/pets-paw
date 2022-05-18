@@ -1,6 +1,6 @@
 import {ReactNode} from 'react';
 
-import styles from './PageWrapper.module.scss';
+import styles from './PageLayout.module.scss';
 import cn from 'classnames';
 
 interface PageWrapperProps {
@@ -8,7 +8,7 @@ interface PageWrapperProps {
   isModal?: boolean,
 }
 
-function PageWrapper({children, isModal}: PageWrapperProps) {
+function PageLayout({children, isModal}: PageWrapperProps) {
   const classes = cn(
     styles.wrapper, {
       [styles.isModal]: isModal,
@@ -22,4 +22,4 @@ function PageWrapper({children, isModal}: PageWrapperProps) {
   );
 }
 
-export default PageWrapper;
+export default PageLayout;

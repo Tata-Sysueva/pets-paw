@@ -13,7 +13,7 @@ interface ButtonProps {
   size: string,
   variants: string[],
   icon?: ReactNode,
-  className?:string,
+  className?: string,
   disabled?: boolean,
   onClick?: (evt: MouseEvent) => void;
   href?: string,
@@ -47,7 +47,7 @@ function Button({
       [styles.primary]: variants.includes(BtnVariant.Primary),
       [styles.secondary]: variants.includes(BtnVariant.Secondary),
     },
-    styles[className],
+    className,
   );
 
   const handleActionClick = (evt: MouseEvent<ContainerElement>) => {
@@ -69,7 +69,7 @@ function Button({
             onClick={handleActionClick}
             className={classes}
           >
-            <span>{icon}</span>
+            {icon && <span>{icon}</span>}
             {children}
           </button>
         );
@@ -80,19 +80,19 @@ function Button({
             to={link}
             className={classes}
           >
-            <span>{icon}</span>
+            {icon && <span>{icon}</span>}
             {children}
           </Link>
         );
       default:
-        return '';
+        throw Error (`Unknown element ${element}`);
     }
   };
 
   return(
-    <div>
+    <>
       {getElement()}
-    </div>
+    </>
   );
 }
 
