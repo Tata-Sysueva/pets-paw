@@ -23,7 +23,6 @@
   &:focus {
     box-shadow: 5px 5px 10px 0 var(--secondary-text);
     outline: none;
-    transform: translateY(-5px);
   }
 
   &:disabled {
@@ -92,9 +91,4 @@
     background-color: var(--accent-color);
     opacity: 0.4;
   }
-}
-
-.active {
-  background-color: var(--accent-color);
-  color: var(--white);
 }

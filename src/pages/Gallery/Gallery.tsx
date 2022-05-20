@@ -1,33 +1,24 @@
 import React, {useState} from 'react';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
-import PageWrapper from '../../layouts/PageWrapper/PageWrapper';
+import PageLayout from '../../layouts/PageLayout/PageLayout';
 import HeaderPages from '../../components/HeaderPages/HeaderPages';
-import Modal from '../Modal/Modal';
-import UploadPhoto from '../../components/UploadPhoto/UploadPhoto';
 import Button from '../../shared/Button/Button';
 import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import {ReactComponent as UploadSvg} from '../../assets/icons/upload.svg';
+import ConfirmModal from '../../shared/ConfirmModal/ConfirmModal';
 
 import styles from './Gallery.module.scss';
 
 function Gallery() {
-  const [isModalVisible, setModalVisibility] = useState(false);
-
-  const onOpenModal = () => {
-    setModalVisibility(!isModalVisible);
-  };
-
-  const oncloseModal = () => {
-    setModalVisibility(!isModalVisible);
-  };
+  const [open, setOpen] = useState(false);
 
   return  (
     <MainLayout>
       <section className={styles.containerGallery}>
         <h2 className="visually-hidden">Gallery page</h2>
         <Navigation />
-        <PageWrapper >
+        <PageLayout >
           <HeaderPages namePage={'Gallery'} />
           <Button
             icon={<UploadSvg />}
@@ -35,16 +26,19 @@ function Gallery() {
             size={BtnSize.Medium}
             variants={[BtnVariant.Secondary]}
             element={TypeElement.Button}
-            onClick={onOpenModal}
+            onClick={() => setOpen(true)}
           >
             <span>Upload</span>
           </Button>
-        </PageWrapper>
+        </PageLayout>
       </section>
-      {isModalVisible && (
-        <Modal callback={oncloseModal} className={'uploadPhoto'}>
-          <UploadPhoto />
-        </Modal>)}
+      {open && (
+        <ConfirmModal
+          title="Are you sure you want to add to like?"
+          onCancel={() => setOpen(false)}
+          onConfirm={() => setOpen(false)}
+        />
+      )}
     </MainLayout>
   );
 }
