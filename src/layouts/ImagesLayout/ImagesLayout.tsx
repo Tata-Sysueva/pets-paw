@@ -1,122 +1,48 @@
-import cn from 'classnames';
-
-import styles from './ImagesLayout.module.scss';
+import React, {ReactNode} from 'react';
 import {AppRoute} from '../../constants/constans';
 import {Link} from 'react-router-dom';
-import React from 'react';
+import {BreedInfo} from '../../mocks/Pictures';
 
-function ImagesLayout() {
-  const mainImagesClasses = cn(
-    styles.containerImages,
-  );
+import styles from './ImagesLayout.module.scss';
 
-  const imagesClasses1 = cn(
-    mainImagesClasses,
-    styles.containerImages1,
-  );
+const IMG_COUNT_PER_STEP = 10;
 
-  const imagesClasses2 = cn(
-    mainImagesClasses,
-    styles.containerImages2,
-  );
+interface ImagesLayoutProps {
+  picturesArray: BreedInfo[],
+}
+
+const getImages = (images: BreedInfo[], count: number): ReactNode => (
+  images
+    .slice(0, count)
+    .map(({ name, id, url}) => (
+      <Link
+        className={styles.images}
+        to={`${AppRoute.Breeds}/${id}`}
+        key={Math.floor(Math.random() * (250 - 1 + 1)) + 1}
+      >
+        <img
+          className={styles.image}
+          src={url}
+          alt={name}
+        />
+      </Link>
+    ))
+);
+
+function ImagesLayout( { picturesArray }: ImagesLayoutProps) {
+  // let renderedImgCount = IMG_COUNT_PER_STEP;
+  //
+  // const imageCount = picturesArray.length;
+  // const newRenderedImgCount = Math.min(imageCount, renderedImgCount + IMG_COUNT_PER_STEP);
+  // const pictures = picturesArray.slice(renderedImgCount, newRenderedImgCount);
+  //
+  // renderedImgCount = newRenderedImgCount;
+
 
   return (
     <div className={styles.imagesWrapper}>
-      <div className={imagesClasses1}>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-      </div>
-      <div className={imagesClasses2}>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-      </div>
-      <div className={imagesClasses1}>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
-        <Link
-          to={`${AppRoute.Breeds}/${1}`}
-          className={styles.images}
-        >
-          <img src="" alt=""/>
-        </Link>
+      <div className={styles.container}>
+        {getImages(picturesArray, IMG_COUNT_PER_STEP)}
       </div>
     </div>
   );

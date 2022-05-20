@@ -3,10 +3,10 @@ import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
 import HeaderPages from '../../components/HeaderPages/HeaderPages';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
-
-import styles from './Breeds.module.scss';
 import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
 
+import styles from './Breeds.module.scss';
+import {pictures} from '../../mocks/Pictures';
 
 function Breeds() {
   return  (
@@ -16,7 +16,7 @@ function Breeds() {
         <Navigation />
         <PageLayout >
           <HeaderPages namePage={'Breeds'} />
-          <ImagesLayout />
+          <ImagesLayout picturesArray={pictures}/>
         </PageLayout>
       </section>
     </MainLayout>
