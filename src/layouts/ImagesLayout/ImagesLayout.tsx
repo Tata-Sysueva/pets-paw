@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {AppRoute} from '../../constants/constans';
 import {Link} from 'react-router-dom';
-import {BreedInfo} from '../../mocks/Pictures';
+import {BreedInfo} from '../../mocks/BreedInfo';
 
 import styles from './ImagesLayout.module.scss';
 
@@ -14,7 +14,7 @@ interface ImagesLayoutProps {
 const getImages = (images: BreedInfo[], count: number): ReactNode => (
   images
     .slice(0, count)
-    .map(({ name, id, url}) => (
+    .map(({ name, id, image}) => (
       <Link
         className={styles.images}
         to={`${AppRoute.Breeds}/${id}`}
@@ -22,7 +22,7 @@ const getImages = (images: BreedInfo[], count: number): ReactNode => (
       >
         <img
           className={styles.image}
-          src={url}
+          src={image[0].url}
           alt={name}
         />
       </Link>

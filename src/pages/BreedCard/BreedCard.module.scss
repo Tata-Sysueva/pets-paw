@@ -1,5 +1,11 @@
-.container {
-  width: 775px;
-  padding-top: 30px;
-  padding-left: 65px;
+.active {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.sliderContainer {
+  position: relative;
+  max-width: 640px;
+  margin-bottom: 51px;
+  overflow: hidden;
 }

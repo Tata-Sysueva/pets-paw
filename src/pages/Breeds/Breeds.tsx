@@ -4,9 +4,9 @@ import Navigation from '../../components/Navigation/Navigation';
 import HeaderPages from '../../components/HeaderPages/HeaderPages';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
 import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
+import {breedInfoArray as pictures}  from '../../mocks/BreedInfo';
 
 import styles from './Breeds.module.scss';
-import {pictures} from '../../mocks/Pictures';
 
 function Breeds() {
   return  (
