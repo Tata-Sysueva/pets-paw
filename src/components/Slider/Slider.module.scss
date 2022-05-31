@@ -28,12 +28,13 @@
   margin-right: 5px;
   border-radius: 50%;
   background-color: var(--button-bgc-color);
+  cursor: pointer;
 
   &:last-child {
     margin-right: 0;
   }
 }
-//
+
 .swiperBulletActive {
   background-color: var(--accent-color);
 }

@@ -6,7 +6,7 @@
   padding: 26px 40px 40px;
 
   border-radius: 20px;
-  border: 2px solid #FBE0DC;
+  border: 2px solid var(--button-bgc-color);
 
   font-weight: 500;
 }
@@ -20,9 +20,9 @@
   font-size: 36px;
   line-height: 52px;
 
-  color: #1D1D1D;
+  color: var(--primary-text);
 
-  background: #FFFFFF;
+  background: var(--background-color-pages);
   border-radius: 20px;
 }
 
@@ -33,7 +33,7 @@
   font-size: 20px;
   line-height: 29px;
 
-  color: #8C8C8C;
+  color: var(--secondary-text);
 }
 
 .list {
@@ -54,13 +54,13 @@
 }
 
 .noteTitle {
-  color: #1D1D1D;
+  color: var(--primary-text);
 }
 
 .note {
   margin-left: 0;
   font-weight: 400;
-  color: #8C8C8C;
+  color: var(--secondary-text);
 }
 
 
