@@ -3,14 +3,14 @@ import {AppRoute, BtnSize, BtnVariant, TypeElement} from '../../constants/consta
 import Button from '../../shared/Button/Button';
 import {ReactComponent as ArrowSvg} from '../../assets/icons/arrow.svg';
 
-import styles from './HeaderPages.module.scss';
+import styles from './PageHeader.module.scss';
 
 interface HeaderPagesProps {
   children?: ReactNode,
   namePage: string,
 }
 
-function HeaderPages({children, namePage}: HeaderPagesProps ) {
+function PageHeader({children, namePage}: HeaderPagesProps ) {
   return (
     <div className={styles.headerContent}>
       <Button
@@ -36,4 +36,4 @@ function HeaderPages({children, namePage}: HeaderPagesProps ) {
   );
 }
 
-export default HeaderPages;
+export default PageHeader;
