@@ -13,8 +13,11 @@ export default class ApiService {
 
   private constructor() {
     this._api = axios.create({
-      baseURL: '',
+      baseURL: 'https://api.thedogapi.com',
       timeout: 10000,
+      headers: {
+        'x-api-key': '162fdd83-f71a-4850-ae1f-f6f5732d9d85'
+      }
     });
   }
 
