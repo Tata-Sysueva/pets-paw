@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
-import HeaderPages from '../../components/HeaderPages/HeaderPages';
+import PageHeader from '../../components/PageHeader/PageHeader';
 import Button from '../../shared/Button/Button';
 import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import {breedInfoArray}  from '../../mocks/BreedInfo';
@@ -17,7 +17,7 @@ function BreedCard() {
       <section className={styles.container}>
         <Navigation />
         <PageLayout >
-          <HeaderPages namePage={'Breed'} >
+          <PageHeader namePage={'Breed'} >
             <Button
               size={BtnSize.Large}
               variants={[BtnVariant.Secondary]}
@@ -25,16 +25,16 @@ function BreedCard() {
               className={styles.active}
             >
               <span>
-                <span className="visually-hidden" >Breed ID</span>
+                <span className="visually-hidden">Breed ID</span>
                 {breedInfoArray[0].id}
               </span>
             </Button>
-          </HeaderPages>
+          </PageHeader>
           <div className={styles.sliderContainer}>
             <Slider infoBreed={breedInfoArray[0]}/>
           </div>
 
-          <BreedInfo infoBreed={breedInfoArray[0]} />
+          <BreedInfo breed={breedInfoArray[0]} />
 
         </PageLayout>
       </section>

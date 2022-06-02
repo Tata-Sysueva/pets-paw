@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
-import HeaderPages from '../../components/HeaderPages/HeaderPages';
+import PageHeader from '../../components/PageHeader/PageHeader';
 import Button from '../../shared/Button/Button';
 import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import {ReactComponent as UploadSvg} from '../../assets/icons/upload.svg';
@@ -19,7 +19,7 @@ function Gallery() {
         <h2 className="visually-hidden">Gallery page</h2>
         <Navigation />
         <PageLayout >
-          <HeaderPages namePage={'Gallery'} />
+          <PageHeader namePage={'Gallery'} />
           <Button
             icon={<UploadSvg />}
             type={'button'}

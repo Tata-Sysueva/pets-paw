@@ -4,10 +4,10 @@ import {BreedInfo as BreedInfoType} from '../../mocks/BreedInfo';
 import styles from './BreedInfo.module.scss';
 
 interface BreedInfoProps {
-  infoBreed: BreedInfoType,
+  breed: BreedInfoType,
 }
 
-function BreedInfo({ infoBreed }: BreedInfoProps) {
+function BreedInfo({ breed }: BreedInfoProps) {
   const {
     name,
     breedFor,
@@ -15,7 +15,8 @@ function BreedInfo({ infoBreed }: BreedInfoProps) {
     height,
     weight,
     lifeSpan
-  } = infoBreed;
+  } = breed;
+
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>
