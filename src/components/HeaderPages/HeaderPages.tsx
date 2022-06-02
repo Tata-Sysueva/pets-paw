@@ -25,9 +25,9 @@ function HeaderPages({children, namePage}: HeaderPagesProps ) {
       <Button
         type={'button'}
         size={BtnSize.Medium}
-        variants={[BtnVariant.Primary]}
+        variants={namePage === 'Breed' ? [BtnVariant.Secondary] : [BtnVariant.Primary]}
         element={TypeElement.Button}
-        className={styles.active}
+        className={namePage === 'Breed' ? '' : styles.active}
       >
         <span>{namePage}</span>
       </Button>

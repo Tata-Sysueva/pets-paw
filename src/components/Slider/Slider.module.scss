@@ -1,0 +1,40 @@
+.image {
+  border-radius: 20px;
+  width: 640px;
+  height: 360px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.swiperPaginationHorizontal {
+  position: absolute;
+  bottom: -10px;
+  left: 278px;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 10px;
+
+  background-color: var(--background-color-pages);
+  border-radius: 20px;
+}
+
+.swiperBullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background-color: var(--button-bgc-color);
+  cursor: pointer;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.swiperBulletActive {
+  background-color: var(--accent-color);
+}

@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 45px;
+  padding: 26px 40px 40px;
+
+  border-radius: 20px;
+  border: 2px solid var(--button-bgc-color);
+
+  font-weight: 500;
+}
+
+.title {
+  display: block;
+  padding: 5px 40px;
+  margin-top: -60px;
+  margin-bottom: 0;
+
+  font-size: 36px;
+  line-height: 52px;
+
+  color: var(--primary-text);
+
+  background: var(--background-color-pages);
+  border-radius: 20px;
+}
+
+.description {
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  font-size: 20px;
+  line-height: 29px;
+
+  color: var(--secondary-text);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  align-self: flex-start;
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.noteWrapper {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.noteTitle {
+  color: var(--primary-text);
+}
+
+.note {
+  margin-left: 0;
+  font-weight: 400;
+  color: var(--secondary-text);
+}
+
+

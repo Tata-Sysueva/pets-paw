@@ -8,7 +8,7 @@
   font-size: 44px;
   font-weight: 500;
   line-height: 58px;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 4px 4px var(--black25);
   color: var(--primary-text);
 }
 
@@ -18,5 +18,5 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 29px;
-  color: #8C8C8C;
+  color: var(--secondary-text);
 }
