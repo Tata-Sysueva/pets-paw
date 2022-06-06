@@ -1,19 +1,18 @@
 import React, {ReactNode} from 'react';
 import {AppRoute} from '../../constants/constans';
 import {Link} from 'react-router-dom';
-import {BreedInfo} from '../../mocks/BreedInfo';
+import {BreedInfo} from '../../types/types';
 
 import styles from './ImagesLayout.module.scss';
 
-const IMG_COUNT_PER_STEP = 10;
+const IMG_COUNT_PER_STEP = 20;
 
 interface ImagesLayoutProps {
   picturesArray: BreedInfo[],
 }
 
-const getImages = (images: BreedInfo[], count: number): ReactNode => (
+const getImages = (images: BreedInfo[]): ReactNode => (
   images
-    .slice(0, count)
     .map(({ name, id, image}) => (
       <Link
         className={styles.images}
@@ -22,7 +21,7 @@ const getImages = (images: BreedInfo[], count: number): ReactNode => (
       >
         <img
           className={styles.image}
-          src={image[0].url}
+          src={image.url}
           alt={name}
         />
       </Link>
@@ -42,8 +41,12 @@ function ImagesLayout( { picturesArray }: ImagesLayoutProps) {
   return (
     <div className={styles.imagesWrapper}>
       <div className={styles.container}>
-        {getImages(picturesArray, IMG_COUNT_PER_STEP)}
+        {getImages(picturesArray.slice(0, 10))}
       </div>
+      {IMG_COUNT_PER_STEP > 10 &&
+        <div className={styles.container}>
+          {getImages(picturesArray.slice(11, 20))}
+        </div>}
     </div>
   );
 }

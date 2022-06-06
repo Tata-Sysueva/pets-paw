@@ -51,6 +51,9 @@ body[data-theme='light'] {
   --modal-bg-color: var(--white-secondary);
   --button-bgc-color: var(--accent-color-light);
   --secondary-bgc-color: var(--white);
+  --bgc-time: var(--white);
+  --bgc-action: var(--white-secondary);
+  --action-btn: var(--white);
 
   --icon-url: url('assets/icons/eye.svg');
   --button-left: 23px;
@@ -63,6 +66,9 @@ body[data-theme='dark'] {
   --modal-bg-color: var(--gray-dark);
   --button-bgc-color: var(--secondary-color);
   --secondary-bgc-color: var(--black05);
+  --bgc-time: var(--black);
+  --bgc-action: var(--black05);
+  --action-btn: var(--gray-dark);
 
   --icon-url: url('assets/icons/eye-dark.svg');
   --button-left: 5px;

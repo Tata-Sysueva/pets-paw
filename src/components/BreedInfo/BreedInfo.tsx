@@ -1,5 +1,5 @@
 import React from 'react';
-import {BreedInfo as BreedInfoType} from '../../mocks/BreedInfo';
+import { BreedInfoMocks as BreedInfoType} from '../../types/types';
 
 import styles from './BreedInfo.module.scss';
 

@@ -1,4 +1,3 @@
-
 import Button from '../../shared/Button/Button';
 import {ReactComponent as SmileSvg} from '../../assets/icons/smile.svg';
 import {ReactComponent as HeartSvg} from '../../assets/icons/heart.svg';
