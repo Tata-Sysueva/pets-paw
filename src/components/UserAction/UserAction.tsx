@@ -1,14 +1,19 @@
 import React from 'react';
+import dayjs from 'dayjs';
+import {Votes} from '../../types/types';
 
 import styles from  './UserAction.module.scss';
 
-//dateTime={}
+type UserActionProps = {
+  info: Votes,
+  nameAction?: string,
+}
 
-function UserAction() {
+function UserAction({ info, nameAction }: UserActionProps) {
   return (
     <li className={styles.item}>
-      <time className={styles.time}>22:35</time>
-      <p className={styles.text}>Image ID: <span className={styles.id}>fQSunHvl8</span> was added to Favourites</p>
+      <time className={styles.time}>{dayjs(info.createdAt).format('HH:mm')}</time>
+      <p className={styles.text}>Image ID: <span className={styles.id}>{info.imageId}</span> was added to {nameAction}</p>
     </li>
   );
 }

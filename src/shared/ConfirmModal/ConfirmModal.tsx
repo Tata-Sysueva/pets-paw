@@ -1,9 +1,9 @@
 import React, {ReactNode} from 'react';
 import Modal from '../Modal/Modal';
-
-import styles from './ConfirmModal.module.scss';
 import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import Button from '../Button/Button';
+
+import styles from './ConfirmModal.module.scss';
 
 interface ConfirmationModalProps {
   onCancel: () => void,

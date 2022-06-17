@@ -1,16 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import VotingImage from '../../components/VotingImage/VotingImage';
-import {breedInfoArray as breeds}  from '../../mocks/BreedInfo';
+import UserActionList from '../../components/UserActionList/UserActionList';
+import {getImageForVoting} from '../../api/requests';
+import {Picture} from '../../types/types';
+import VotingControls from '../../components/VotingControls/VotingControls';
 
 import styles from './Voting.module.scss';
-import UserActionList from '../../components/UserActionList/UserActionList';
 
 function Voting() {
-  const breedPicture = breeds[0].image[0];
+  const [picture, setPicture] = useState<Picture>({} as Picture);
+  const [isLoaded, setLoad] = useState(false);
+  const [changeVote, setChangeVote] = useState(false);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const data = await getImageForVoting();
+      setPicture(data[0]);
+      setLoad(true);
+    };
+    fetchImage();
+  }, []);
+
+  const handleButtonClick = () => {
+    setChangeVote(!changeVote);
+  };
 
   return  (
     <MainLayout >
@@ -19,8 +36,13 @@ function Voting() {
         <Navigation />
         <PageLayout >
           <PageHeader namePage={'Voting'} />
-          <VotingImage picture={breedPicture}/>
-          <UserActionList />
+          <VotingImage picture={picture} isLoaded={isLoaded}/>
+          <VotingControls
+            imageId={picture.id}
+            isLoaded={!isLoaded}
+            onClickButton={handleButtonClick}
+          />
+          <UserActionList changeVote={changeVote} />
         </PageLayout>
       </section>
     </MainLayout>

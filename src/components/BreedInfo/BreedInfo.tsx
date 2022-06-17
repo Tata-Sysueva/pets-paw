@@ -10,7 +10,7 @@ interface BreedInfoProps {
 function BreedInfo({ breed }: BreedInfoProps) {
   const {
     name,
-    breedFor,
+    bredFor,
     temperament,
     height,
     weight,
@@ -23,7 +23,7 @@ function BreedInfo({ breed }: BreedInfoProps) {
         {name}
       </h3>
       <p className={styles.description}>
-        {breedFor}
+        {bredFor}
       </p>
       <dl className={styles.list}>
         <div>

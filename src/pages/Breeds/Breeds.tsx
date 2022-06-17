@@ -14,7 +14,7 @@ function Breeds() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await getBreeds();
+      const data = await getBreeds();
       setBreeds(data);
     };
     fetchData();

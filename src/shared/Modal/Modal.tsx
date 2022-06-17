@@ -1,11 +1,11 @@
 import React, {ReactNode} from 'react';
-
+import cn from 'classnames';
 import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import Button from '../Button/Button';
 import {ReactComponent as CloseSvg} from '../../assets/icons/close.svg';
 
 import styles from './Modal.module.scss';
-import cn from 'classnames';
+
 
 interface ModalProps {
   className?: string,

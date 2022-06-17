@@ -1,7 +1,7 @@
 import {BreedInfoMocks} from '../types/types';
 
 const breedInfo: BreedInfoMocks = {
-  breedFor: 'Small rodent hunting, lapdog',
+  bredFor: 'Small rodent hunting, lapdog',
   breedGroup: 'Toy',
   height: {
     imperial: '9 - 11.5',

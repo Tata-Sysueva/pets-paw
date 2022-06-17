@@ -27,4 +27,10 @@ export enum TypeElement {
   Link = 'Link',
 }
 
+export enum ConfirmText {
+  AddLikes = 'Are you sure you want to add to like?',
+  AddFavorites = 'Are you sure you want to add to favorites?',
+  AddDislikes = 'Are you sure you want to add to dislikes?'
+}
+
 

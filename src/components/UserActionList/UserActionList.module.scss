@@ -1,3 +1,10 @@
 .list {
   margin: 0;
+  padding: 0;
+  max-height: 270px;
+  overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar {
+  width: 0;
 }
