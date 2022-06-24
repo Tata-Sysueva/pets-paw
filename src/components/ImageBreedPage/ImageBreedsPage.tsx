@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {BreedInfo} from '../types/types';
+import {BreedInfo} from '../../types/types';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../constants/constans';
+import {AppRoute} from '../../constants/constans';
 
 import styles from './ImageBreedPage.module.scss';
 

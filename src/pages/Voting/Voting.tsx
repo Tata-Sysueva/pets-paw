@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import VotingImage from '../../components/VotingImage/VotingImage';
-import UserActionList from '../../components/UserActionList/UserActionList';
-import {getImageForVoting} from '../../api/requests';
-import {Picture} from '../../types/types';
+import VotingActionList from '../../components/VotingActionList/VotingActionList';
+import {getFavorites, getImageForVoting, getVotes} from '../../api/requests';
+import {Favorites, Picture, Votes} from '../../types/types';
 import VotingControls from '../../components/VotingControls/VotingControls';
 
 import styles from './Voting.module.scss';
@@ -14,20 +14,44 @@ import styles from './Voting.module.scss';
 function Voting() {
   const [picture, setPicture] = useState<Picture>({} as Picture);
   const [isLoaded, setLoad] = useState(false);
-  const [changeVote, setChangeVote] = useState(false);
+  const [votes, setVotes] = useState<Votes[]>([]);
+  const [favorites, setFavorites] = useState<Favorites[]>([]);
+
+  const fetchVotes = useCallback(async () => {
+    const data = await getVotes();
+    setVotes(data);
+  }, []);
+
+  const fetchFavorites = useCallback(async () => {
+    const data = await getFavorites();
+    setFavorites(data);
+  }, []);
+
+  const fetchPhoto = useCallback(async () => {
+    const data = await getImageForVoting();
+    setPicture(data[0]);
+    setLoad(true);
+  }, []);
 
   useEffect(() => {
-    const fetchImage = async () => {
-      const data = await getImageForVoting();
-      setPicture(data[0]);
-      setLoad(true);
-    };
-    fetchImage();
+    fetchPhoto();
+  }, []);
+
+  useEffect(() => {
+    fetchVotes();
+  }, []);
+
+  useEffect(() => {
+    fetchFavorites();
   }, []);
 
   const handleButtonClick = () => {
-    setChangeVote(!changeVote);
+    fetchVotes();
+    fetchPhoto();
+    fetchFavorites();
   };
+
+  const userActionData = [...votes ,...favorites];
 
   return  (
     <MainLayout >
@@ -40,9 +64,10 @@ function Voting() {
           <VotingControls
             imageId={picture.id}
             isLoaded={!isLoaded}
-            onClickButton={handleButtonClick}
+            onClick={handleButtonClick}
+            favorites={favorites}
           />
-          <UserActionList changeVote={changeVote} />
+          <VotingActionList votes={userActionData}/>
         </PageLayout>
       </section>
     </MainLayout>

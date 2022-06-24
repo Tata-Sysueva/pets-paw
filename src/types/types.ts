@@ -55,4 +55,13 @@ export interface Votes extends VoteReactions {
   countryCode?: string,
   id?: number,
   createdAt?: string,
+  nameAction?: string | null,
+}
+
+export interface Favorites extends Votes {
+  image?: {
+    id: string,
+    url: string,
+  },
+  userId?: string,
 }

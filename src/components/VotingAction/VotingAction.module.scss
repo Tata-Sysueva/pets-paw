@@ -1,4 +1,5 @@
 .item {
+  position: relative;
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
@@ -38,3 +39,25 @@
   color: var(--primary-text);
 }
 
+.icon {
+  position: absolute;
+  right: 19px;
+  top: 22px;
+}
+
+.icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dislike {
+  color: var(--yellow);
+}
+
+.like {
+  color: var(--green);
+}
+
+.favorites {
+  color: var(--accent-color);
+}

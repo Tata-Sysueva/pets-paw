@@ -2,67 +2,84 @@ import React, {useState} from 'react';
 import {ReactComponent as SmileSvg} from '../../assets/icons/smile.svg';
 import {ReactComponent as HeartSvg} from '../../assets/icons/heart.svg';
 import {ReactComponent as SadnessSvg} from '../../assets/icons/sadness.svg';
-import ConfirmModal from '../../shared/ConfirmModal/ConfirmModal';
-import {ConfirmText} from '../../constants/constans';
-import {addFavoriteImage, createVote} from '../../api/requests';
-import FeedbackModal from '../../shared/FeedbackModal/FeedbackModal';
-import {adaptToServer} from '../../utils/utils';
+import {TypeModal} from '../../constants/constans';
+import {addFavoriteImage, createVote, deleteFavoriteImage} from '../../api/requests';
+import {adaptToServer, feedbackMessage} from '../../utils/utils';
+import VotingModals from './VotingModals/VotingModals';
+import {hideModal, showModal} from '../../store/modalSlice/modalSlice';
+import {useAppDispatch} from '../../hooks';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './VotingControls.module.scss';
+import {Favorites} from '../../types/types';
 
 type VotingControlsProps = {
   imageId: number | string,
   isLoaded: boolean,
-  onClickButton: () => void,
+  onClick: (nameAction: string | null | undefined) => void,
+  favorites: Favorites[],
 }
 
-function VotingControls({ imageId, isLoaded, onClickButton }: VotingControlsProps) {
-  const [open, setOpen] = useState(false); // открывает попап
-  const [title, setTitle] = useState(''); // меняет надпись в зависимости от того, на какую кнопку нажали
-  const [isReaction, setReaction] = useState(false); // проверяет, это кнопки лайк/дизлайк или фейворитс
-  const [isLikes, setLikes] = useState(false); // меняет value
-  const [error, setError] = useState(false); // проверяет на ошибку
-  const [success, setSuccess] = useState(false); // проверяет на успех
+function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControlsProps) {
+  const dispatch = useAppDispatch();
+  const closeModal = () => dispatch(hideModal());
+  const [nameAction, setNameAction] = useState<string | null | undefined>('');
 
-  const onOpenModal = (text: string, reaction: boolean) => {
-    setOpen(true);
-    setTitle(text);
-    setReaction(reaction);
-  };
-
-  const postVote = async () => {
-    const value = Number(isLikes);
-
+  const postVote = async (payload: number) => {
     const data = {
       imageId: imageId,
-      value: value,
+      value: payload,
     };
 
     try {
       await createVote(adaptToServer(data));
-      setOpen(false);
-      setSuccess(true);
+      closeModal();
+      onClick(nameAction);
+      feedbackMessage(true);
     } catch {
-      setError(true);
+      feedbackMessage(false);
     }
   };
 
   const addFavorites = async () => {
     try {
       await addFavoriteImage(adaptToServer({imageId}));
-      setOpen(false);
-      setSuccess(true);
-    } catch {
-      setError(true);
+      closeModal();
+      feedbackMessage(true);
+      onClick(nameAction);
+    } catch (error) {
+      feedbackMessage(false);
     }
   };
 
-  const onCreateVote = () => {
-    if (isReaction) {
-      setLikes(!isLikes);
-      postVote();
+  const deleteFavorites = async (id: number | string | undefined) => {
+    try {
+      await deleteFavoriteImage({id});
+      closeModal();
+      feedbackMessage(true);
+      onClick(nameAction);
+    } catch (error) {
+      feedbackMessage(false);
+    }
+  };
+
+  const favoriteActions = () => {
+    const getFavoriteId = favorites.find((favorite) => favorite.imageId === imageId);
+
+    if (getFavoriteId !== undefined) {
+      deleteFavorites(getFavoriteId.id);
     } else {
       addFavorites();
+    }
+  };
+
+  const onCreateVote = ({ payload, type }: { payload?: number, type?: string | null }) => {
+    setNameAction(type);
+
+    if (type === TypeModal.Favorites) {
+      favoriteActions();
+    } else {
+      postVote(payload || 0);
     }
   };
 
@@ -70,10 +87,7 @@ function VotingControls({ imageId, isLoaded, onClickButton }: VotingControlsProp
     <div className={styles.btnWrap}>
       <button
         className={styles.button}
-        onClick={() => {
-          onOpenModal(ConfirmText.AddLikes, true);
-          onClickButton();
-        }}
+        onClick={() => dispatch(showModal({type: TypeModal.Like}))}
         disabled={isLoaded}
       >
         <SmileSvg />
@@ -81,10 +95,7 @@ function VotingControls({ imageId, isLoaded, onClickButton }: VotingControlsProp
       </button>
       <button
         className={styles.button}
-        onClick={() => {
-          onOpenModal(ConfirmText.AddFavorites, false);
-          onClickButton();
-        }}
+        onClick={() => dispatch(showModal({type: TypeModal.Favorites}))}
         disabled={isLoaded}
       >
         <HeartSvg />
@@ -92,36 +103,14 @@ function VotingControls({ imageId, isLoaded, onClickButton }: VotingControlsProp
       </button>
       <button
         className={styles.button}
-        onClick={() => {
-          onOpenModal(ConfirmText.AddDislikes, true);
-          onClickButton();
-        }}
+        onClick={() => dispatch(showModal({type: TypeModal.Dislike}))}
         disabled={isLoaded}
       >
         <SadnessSvg />
         <span className="visually-hidden">Add to dislikes</span>
       </button>
-      {open && (
-        <ConfirmModal
-          title={title}
-          onCancel={() => setOpen(false)}
-          onConfirm={() => onCreateVote()}
-        />
-      )}
-      {error && (
-        <FeedbackModal
-          title={'Something went wrong. Try again'}
-          onConfirm={() => setError(false)}
-          isError
-        />
-      )}
-      {success && (
-        <FeedbackModal
-          title={'Thanks for your vote!'}
-          onConfirm={() => setSuccess(false)}
-          isError={false}
-        />
-      )}
+
+      <VotingModals onCreateVote={onCreateVote}/>
 
     </div>
   );

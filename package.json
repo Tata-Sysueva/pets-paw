@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-yuki/ui": "^0.0.43",
-    "@types/swiper": "^6.0.0",
+    "@react-yuki/ui": "0.0.43",
+    "@reduxjs/toolkit": "^1.8.2",
+    "@types/react-redux": "7.1.24",
+    "@types/swiper": "6.0.0",
     "axios": "0.27.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-redux": "8.0.2",
     "react-scripts": "5.0.1",
-    "swiper": "^8.1.5",
+    "swiper": "8.1.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -50,6 +53,7 @@
     "eslint-config-htmlacademy": "5.1.2",
     "just-kebab-case": "4.0.3",
     "react-router-dom": "6.3.0",
+    "react-toastify": "9.0.5",
     "sass": "1.50.1",
     "typescript": "4.5.5"
   }
