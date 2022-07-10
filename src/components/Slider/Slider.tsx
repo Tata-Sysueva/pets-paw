@@ -2,12 +2,12 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/scss';
-import {BreedInfo} from '../../mocks/BreedInfo';
+import { BreedInfoMocks} from '../../types/types';
 
 import styles from './Slider.module.scss';
 
 interface SliderProps {
-  infoBreed: BreedInfo,
+  infoBreed: BreedInfoMocks,
 }
 
 function Slider({ infoBreed }: SliderProps) {

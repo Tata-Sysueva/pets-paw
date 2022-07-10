@@ -1,0 +1,60 @@
+.btnWrap {
+  position: absolute;
+  bottom: 315px;
+  right: 215px;
+  display: inline-flex;
+  height: 84px;
+  background: var(--white);
+  border: 4px solid var(--action-btn);
+  border-radius: 24px;
+  overflow: hidden;
+  gap: 4px;
+}
+
+.button {
+  padding: 25px;
+
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+
+  &:first-child {
+    border-radius: 20px 0 0 20px;
+    background-color: var(--green);
+
+    &:hover {
+      color: var(--green);
+      background-color: var(--green03);
+    }
+  }
+
+  &:nth-child(2) {
+    background-color: var(--accent-color);
+
+    &:hover {
+      color: var(--accent-color);
+      background-color: var(--accent-color03);
+    }
+  }
+
+  &:nth-child(3) {
+    border-radius: 0 20px 20px 0;
+    background-color: var(--yellow);
+
+    &:hover {
+      color: var(--yellow);
+      background-color: var(--yellow03);
+    }
+  }
+
+  &:disabled {
+    color: var(--white);
+    background-color: var(--secondary-text);
+    opacity: 0.3;
+    cursor: default;
+
+    &:hover {
+      background-color: var(--secondary-text);
+    }
+  }
+}

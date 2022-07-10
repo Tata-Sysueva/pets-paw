@@ -1,33 +1,15 @@
-import React, {ReactNode} from 'react';
-import {AppRoute} from '../../constants/constans';
-import {Link} from 'react-router-dom';
-import {BreedInfo} from '../../mocks/BreedInfo';
+import React from 'react';
+import {BreedInfo} from '../../types/types';
+import ImageBreedPage from '../../components/ImageBreedPage/ImageBreedsPage';
 
 import styles from './ImagesLayout.module.scss';
 
-const IMG_COUNT_PER_STEP = 10;
+
+const IMG_COUNT_PER_STEP = 20;
 
 interface ImagesLayoutProps {
   picturesArray: BreedInfo[],
 }
-
-const getImages = (images: BreedInfo[], count: number): ReactNode => (
-  images
-    .slice(0, count)
-    .map(({ name, id, image}) => (
-      <Link
-        className={styles.images}
-        to={`${AppRoute.Breeds}/${id}`}
-        key={Math.floor(Math.random() * (250 - 1 + 1)) + 1}
-      >
-        <img
-          className={styles.image}
-          src={image[0].url}
-          alt={name}
-        />
-      </Link>
-    ))
-);
 
 function ImagesLayout( { picturesArray }: ImagesLayoutProps) {
   // let renderedImgCount = IMG_COUNT_PER_STEP;
@@ -42,8 +24,16 @@ function ImagesLayout( { picturesArray }: ImagesLayoutProps) {
   return (
     <div className={styles.imagesWrapper}>
       <div className={styles.container}>
-        {getImages(picturesArray, IMG_COUNT_PER_STEP)}
+        {picturesArray
+          .slice(0, 10)
+          .map((picture) => <ImageBreedPage key={picture.id} picture={picture}/>)}
       </div>
+      {IMG_COUNT_PER_STEP > 10 &&
+        <div className={styles.container}>
+          {picturesArray
+            .slice(11, 20)
+            .map((picture) => <ImageBreedPage key={picture.id} picture={picture}/>)}
+        </div>}
     </div>
   );
 }

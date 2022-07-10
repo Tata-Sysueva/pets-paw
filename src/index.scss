@@ -33,6 +33,7 @@ body {
   --white: #FFFFFF;
   --white-secondary: #F8F8F7;
   --accent-color: #FF868E;
+  --accent-color03: rgba(255, 134, 142, 0.3);
   --accent-color-light: #FBE0DC;
   --secondary-color: rgba(255, 134, 142, 0.2);
   --secondary-text: #8C8C8C;
@@ -41,7 +42,13 @@ body {
   --black6: rgba(255, 255, 255, 0.6);
   --black07: rgba(255, 255, 255, 0.07);
   --black25: rgba(0, 0, 0, 0.25);
+  --secondary-black6: rgba(29, 29, 29, 0.6);
   --gray-dark: #282828;
+  --hoverImage: rgba(255, 134, 142, 0.6);
+  --green: #97EAB9;
+  --green03: rgba(151, 234, 185, 0.3);
+  --yellow: #FFD280;
+  --yellow03: rgba(255, 210, 128, 0.3);
 }
 
 body[data-theme='light'] {
@@ -51,6 +58,9 @@ body[data-theme='light'] {
   --modal-bg-color: var(--white-secondary);
   --button-bgc-color: var(--accent-color-light);
   --secondary-bgc-color: var(--white);
+  --bgc-time: var(--white);
+  --bgc-action: var(--white-secondary);
+  --action-btn: var(--white);
 
   --icon-url: url('assets/icons/eye.svg');
   --button-left: 23px;
@@ -63,6 +73,9 @@ body[data-theme='dark'] {
   --modal-bg-color: var(--gray-dark);
   --button-bgc-color: var(--secondary-color);
   --secondary-bgc-color: var(--black05);
+  --bgc-time: var(--black);
+  --bgc-action: var(--black05);
+  --action-btn: var(--gray-dark);
 
   --icon-url: url('assets/icons/eye-dark.svg');
   --button-left: 5px;

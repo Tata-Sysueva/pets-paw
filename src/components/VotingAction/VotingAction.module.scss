@@ -1,0 +1,63 @@
+.item {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  background-color: var(--bgc-action);
+  border-radius: 10px;
+
+  marker: none;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.time {
+  padding: 3px 10px;
+  margin-right: 20px;
+
+  color: var(--primary-text);
+  background-color: var(--bgc-time);
+  border-radius: 5px;
+}
+
+.text {
+  margin: 0;
+  color: var(--secondary-text);
+}
+
+.id {
+  font-weight: 500;
+  color: var(--primary-text);
+}
+
+.icon {
+  position: absolute;
+  right: 19px;
+  top: 22px;
+
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.dislike {
+  color: var(--yellow);
+}
+
+.like {
+  color: var(--green);
+}
+
+.favorites {
+  color: var(--accent-color);
+}

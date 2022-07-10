@@ -1,0 +1,48 @@
+$primaryColor: var(--accent-color-light);
+$secondaryColor: var(--bgc-time);
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinnerCircle {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  overflow: hidden;
+  background-color: $primaryColor;
+  border-radius: 100%;
+  animation: spin 1s infinite linear;
+}
+
+.spinnerCircleGradient,
+.spinnerCircleInner {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.spinnerCircleInner {
+  top: 50%;
+  left: 50%;
+  background-color: $secondaryColor;
+  border-radius: 100%;
+}
+
+.spinnerCircleGradient {
+  top: -24px;
+  left: 6px;
+  background-color: $primaryColor;
+  background-image: linear-gradient(0deg,$primaryColor 0%,$secondaryColor 50%);
+  transform: rotate(-45deg);
+}

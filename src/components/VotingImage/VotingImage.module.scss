@@ -1,0 +1,17 @@
+.container {
+  margin-bottom: 52px;
+}
+
+.containerImage {
+  position: relative;
+  width: 640px;
+  height: 360px;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: contain;
+}

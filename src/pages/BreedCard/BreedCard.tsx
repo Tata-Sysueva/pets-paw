@@ -6,12 +6,16 @@ import PageHeader from '../../components/PageHeader/PageHeader';
 import Button from '../../shared/Button/Button';
 import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import {breedInfoArray}  from '../../mocks/BreedInfo';
-
-import styles from './BreedCard.module.scss';
 import Slider from '../../components/Slider/Slider';
 import BreedInfo from '../../components/BreedInfo/BreedInfo';
 
+import styles from './BreedCard.module.scss';
+import {useParams} from 'react-router-dom';
+
 function BreedCard() {
+  const { id: breedId } = useParams<{ id:string}>();
+  const cardBreedId = Number(breedId);
+
   return  (
     <MainLayout>
       <section className={styles.container}>
@@ -26,7 +30,7 @@ function BreedCard() {
             >
               <span>
                 <span className="visually-hidden">Breed ID</span>
-                {breedInfoArray[0].id}
+                {cardBreedId}
               </span>
             </Button>
           </PageHeader>

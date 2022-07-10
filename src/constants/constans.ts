@@ -27,4 +27,21 @@ export enum TypeElement {
   Link = 'Link',
 }
 
+export enum TextModal {
+  AddLikes = 'Are you sure you want to add to like?',
+  AddFavorites = 'Are you sure you want to add to favorites?',
+  AddDislikes = 'Are you sure you want to add to dislikes?',
+  Success = 'Thanks for your vote!',
+  Error = 'Something went wrong. Try again',
+}
 
+export enum NameSpace {
+  Modal = 'MODAL',
+}
+
+
+export enum TypeModal {
+  Like = 'Likes',
+  Dislike = 'Dislikes',
+  Favorites = 'Favorites',
+}
