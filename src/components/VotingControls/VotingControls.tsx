@@ -52,7 +52,7 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
     }
   };
 
-  const deleteFavorites = async (id: number | string | undefined) => {
+  const deleteFavorites = async (id: number | string) => {
     try {
       await deleteFavoriteImage({id});
       closeModal();
@@ -64,10 +64,10 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
   };
 
   const favoriteActions = () => {
-    const getFavoriteId = favorites.find((favorite) => favorite.imageId === imageId);
+    const favoriteItem = favorites.find((favorite) => favorite.imageId === imageId);
 
-    if (getFavoriteId !== undefined) {
-      deleteFavorites(getFavoriteId.id);
+    if (favoriteItem && favoriteItem.id) {
+      deleteFavorites(favoriteItem.id);
     } else {
       addFavorites();
     }

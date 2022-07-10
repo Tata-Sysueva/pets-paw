@@ -43,11 +43,11 @@
   position: absolute;
   right: 19px;
   top: 22px;
-}
 
-.icon svg {
-  width: 20px;
-  height: 20px;
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .dislike {

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-yuki/ui": "0.0.43",
     "@reduxjs/toolkit": "^1.8.2",
     "@types/react-redux": "7.1.24",
     "@types/swiper": "6.0.0",

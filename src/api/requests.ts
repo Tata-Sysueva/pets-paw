@@ -21,19 +21,19 @@ export const getImageForBreedCard = () =>
     .then(({data}) => camelcaseKeys(data));
 
 export const createVote = (data: VoteReactions) => {
-  ApiService.Instance.post<Vote>('https://api.thedogapi.com/v1/votes', data);
+  ApiService.Instance.post<Vote>('/v1/votes', data);
 };
 
 export const addFavoriteImage = (data: Vote) =>
-  ApiService.Instance.post<Vote>('https://api.thedogapi.com/v1/favourites', data);
+  ApiService.Instance.post<Vote>('/v1/favourites', data);
 
-export const deleteFavoriteImage = ({id}:  { id: number | string | undefined }) =>
-  ApiService.Instance.delete<string | number>(`https://api.thedogapi.com/v1/favourites/${id}`);
+export const deleteFavoriteImage = ({id}:  { id: number | string }) =>
+  ApiService.Instance.delete<string | number>(`/v1/favourites/${id}`);
 
 export const getVotes = () =>
-  ApiService.Instance.get<Votes[]>('https://api.thedogapi.com/v1/votes?limit=2000')
+  ApiService.Instance.get<Votes[]>('/v1/votes?limit=2000')
     .then(({data}) => camelcaseKeys(data));
 
 export const getFavorites = () =>
-  ApiService.Instance.get<Favorites[]>('https://api.thedogapi.com/v1/favourites')
+  ApiService.Instance.get<Favorites[]>('/v1/favourites')
     .then(({data}) => camelcaseKeys(data));

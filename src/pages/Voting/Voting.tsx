@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Navigation from '../../components/Navigation/Navigation';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
@@ -10,6 +10,7 @@ import {Favorites, Picture, Votes} from '../../types/types';
 import VotingControls from '../../components/VotingControls/VotingControls';
 
 import styles from './Voting.module.scss';
+import dayjs from 'dayjs';
 
 function Voting() {
   const [picture, setPicture] = useState<Picture>({} as Picture);
@@ -51,7 +52,11 @@ function Voting() {
     fetchFavorites();
   };
 
-  const userActionData = [...votes ,...favorites];
+  const userActionData = useMemo(() =>
+    [...votes ,...favorites]
+      .slice()
+      .sort((a,b) => +dayjs(b.createdAt) - +dayjs(a.createdAt)),
+  [votes, favorites]);
 
   return  (
     <MainLayout >

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {selectModalIsOpen, selectModalType} from '../../../store/modalSlice/selectors';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {TextModal, TypeModal} from '../../../constants/constans';
@@ -52,13 +52,19 @@ function VotingModals({ onCreateVote }: VotingModalProps) {
 
   const closeModal = () => dispatch(hideModal());
 
-  const onPopupEscKeydown = (evt: KeyboardEvent) => {
-    if (isEscapeKey(evt)) {
-      closeModal();
-    }
-  };
+  useEffect(() => {
+    const onPopupEscKeydown = (evt: KeyboardEvent) => {
+      if (isEscapeKey(evt)) {
+        closeModal();
+      }
+    };
 
-  document.addEventListener('keydown', onPopupEscKeydown);
+    document.addEventListener('keydown', onPopupEscKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', onPopupEscKeydown);
+    };
+  }, []);
 
   const renderModal = () => {
     switch (type) {
