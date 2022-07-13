@@ -8,6 +8,7 @@ import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
 import styles from './Breeds.module.scss';
 import {BreedInfo} from '../../types/types';
 import {getBreeds} from '../../api/requests';
+import SortBreeds from '../../components/SortBreeds/SortBreeds';
 
 function Breeds() {
   const [breeds, setBreeds] = useState<BreedInfo[]>([]);
@@ -26,7 +27,9 @@ function Breeds() {
         <h2 className="visually-hidden">Breeds page</h2>
         <Navigation />
         <PageLayout >
-          <PageHeader namePage={'Breeds'} />
+          <PageHeader namePage={'Breeds'} >
+            <SortBreeds breedsInfo={breeds}/>
+          </PageHeader>
           <ImagesLayout picturesArray={breeds}/>
         </PageLayout>
       </section>

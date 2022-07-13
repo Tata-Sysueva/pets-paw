@@ -36,15 +36,9 @@ function Voting() {
 
   useEffect(() => {
     fetchPhoto();
-  }, []);
-
-  useEffect(() => {
     fetchVotes();
-  }, []);
-
-  useEffect(() => {
     fetchFavorites();
-  }, []);
+  }, [fetchPhoto, fetchVotes, fetchFavorites]);
 
   const handleButtonClick = () => {
     fetchVotes();
@@ -53,7 +47,7 @@ function Voting() {
   };
 
   const userActionData = useMemo(() =>
-    [...votes ,...favorites]
+    [...votes , ...favorites]
       .slice()
       .sort((a,b) => +dayjs(b.createdAt) - +dayjs(a.createdAt)),
   [votes, favorites]);

@@ -5,6 +5,7 @@
   justify-content: center;
   padding: 0;
 
+  font-family: Jost, "PT Sans", sans-serif;
   letter-spacing: 2px;
   line-height: 0;
   text-transform: uppercase;
@@ -21,7 +22,7 @@
   transition: transform 2ms;
 
   &:focus {
-    box-shadow: 5px 5px 10px 0 var(--secondary-text);
+    box-shadow: 2px 2px 5px 0 var(--secondary-text);
     outline: none;
   }
 
@@ -91,6 +92,22 @@
   &:hover {
     color: var(--white);
     background-color: var(--accent-color);
+  }
+
+  &:active {
+    color: white;
+    background-color: var(--accent-color);
+    opacity: 0.4;
+  }
+}
+
+.special {
+  color: var(--secondary-text);
+  background-color: var(--white-secondary);
+
+  &:hover {
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color-light);
   }
 
   &:active {

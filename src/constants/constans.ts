@@ -19,7 +19,7 @@ export enum BtnSize {
 export enum BtnVariant {
   Primary = 'Primary',
   Secondary = 'Secondary',
-  SpecSize = 'SpecSize',
+  Special = 'Special',
 }
 
 export enum TypeElement {

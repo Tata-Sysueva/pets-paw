@@ -1,6 +1,6 @@
 import React from 'react';
 import {BreedInfo} from '../../types/types';
-import ImageBreedPage from '../../components/ImageBreedPage/ImageBreedsPage';
+import ImageBreedPage from '../../components/ImageBreed/ImageBreed';
 
 import styles from './ImagesLayout.module.scss';
 

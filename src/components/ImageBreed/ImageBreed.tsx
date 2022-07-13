@@ -10,7 +10,7 @@ function ImageBreedPage({ picture }: {picture: BreedInfo}) {
 
   return (
     <Link
-      className={styles.images}
+      className={styles.imageContainer}
       to={`${AppRoute.Breeds}/${id}`}
       key={id}
     >

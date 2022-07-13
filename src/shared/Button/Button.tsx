@@ -46,6 +46,7 @@ function Button({
 
       [styles.primary]: variants.includes(BtnVariant.Primary),
       [styles.secondary]: variants.includes(BtnVariant.Secondary),
+      [styles.special]: variants.includes(BtnVariant.Special),
     },
     className,
   );
