@@ -1,20 +1,20 @@
-import React from 'react';
-import Select from 'react-select';
-import styles from './SortBreeds.module.scss';
+import React, {useMemo} from 'react';
+import Select, {SingleValue} from 'react-select';
 import Button from '../../shared/Button/Button';
 import {ReactComponent as SortUp} from '../../assets/icons/sortUp.svg';
 import {ReactComponent as SortDown} from '../../assets/icons/sortDown.svg';
-import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
+import {BtnSize, BtnVariant, SortType, TypeElement} from '../../constants/constans';
 import {BreedInfo} from '../../types/types';
 
-function SortBreeds({ breedsInfo }: { breedsInfo: BreedInfo[] }) {
-  const getOptionsInfo = () => breedsInfo.map(({ id, name}) => ({
-    value: id,
-    label: name,
-  }));
+import styles from './SortBreeds.module.scss';
 
-  const breeds = getOptionsInfo();
+interface SortBreedsProps {
+  breedsInfo: BreedInfo[],
+  onSortButtonClick: (sortType: string) => void,
+  onSelectButtonClick: (value: SingleValue<{ value: number; label: string; }>) => void,
+}
 
+function SortBreeds({ breedsInfo, onSortButtonClick, onSelectButtonClick }: SortBreedsProps) {
   const limits = [
     { value: '5', label: 'Limit: 5' },
     { value: '10', label: 'Limit: 10' },
@@ -22,6 +22,12 @@ function SortBreeds({ breedsInfo }: { breedsInfo: BreedInfo[] }) {
     { value: '20', label: 'Limit: 20' },
   ];
 
+  const breeds = useMemo(() =>
+    breedsInfo.map(({id, name}) => ({
+      value: id,
+      label: name,
+    })),
+  [breedsInfo]);
 
   return (
     <div className={styles.wrapper}>
@@ -29,11 +35,14 @@ function SortBreeds({ breedsInfo }: { breedsInfo: BreedInfo[] }) {
         classNamePrefix='customSelectBreeds'
         options={breeds}
         placeholder='All breeds'
+        onChange={(option) => onSelectButtonClick(option)}
+        isSearchable={false}
       />
       <Select
         classNamePrefix='customSelectLimit'
         options={limits}
         placeholder='Limit: 10'
+        isSearchable={false}
       />
       <Button
         icon={<SortUp />}
@@ -41,6 +50,7 @@ function SortBreeds({ breedsInfo }: { breedsInfo: BreedInfo[] }) {
         variants={[BtnVariant.Special]}
         type={'submit'}
         element={TypeElement.Button}
+        onClick={() => onSortButtonClick(SortType.Asc)}
       >
         <span className="visually-hidden">Sort A to Z</span>
       </Button>
@@ -50,6 +60,7 @@ function SortBreeds({ breedsInfo }: { breedsInfo: BreedInfo[] }) {
         variants={[BtnVariant.Special]}
         type={'submit'}
         element={TypeElement.Button}
+        onClick={() => onSortButtonClick(SortType.Desc)}
       >
         <span className="visually-hidden">Sort Z to A</span>
       </Button>

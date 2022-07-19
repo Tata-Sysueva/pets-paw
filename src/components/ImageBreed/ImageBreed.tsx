@@ -5,7 +5,7 @@ import {AppRoute} from '../../constants/constans';
 
 import styles from './ImageBreedPage.module.scss';
 
-function ImageBreedPage({ picture }: {picture: BreedInfo}) {
+function ImageBreed({ picture }: {picture: BreedInfo}) {
   const { id, image, name} = picture;
 
   return (
@@ -26,4 +26,4 @@ function ImageBreedPage({ picture }: {picture: BreedInfo}) {
   );
 }
 
-export default ImageBreedPage;
+export default ImageBreed;

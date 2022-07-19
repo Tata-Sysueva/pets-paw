@@ -2,15 +2,18 @@
 .customSelectLimit {
   &__control {
     min-width: 101px !important;
+    min-height: 40px !important;
     padding: 6px 8px !important;
     border: 2px solid transparent !important;
     border-radius: 10px !important;
     color: var(--secondary-text) !important;
-    background-color: var(--white-secondary) !important;
+    background-color: var(--bgc-action) !important;
+    box-shadow: none !important;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: var(--accent-color) !important;
-      border: 2px solid var(--accent-color-light) !important;
+      border: 2px solid var(--button-bgc-color) !important;
     }
   }
 
@@ -28,55 +31,61 @@
   &__indicator svg{
     width: 16px;
     height: 16px;
-    fill: #8C8C8C;
+    fill: var(--secondary-text);
   }
 
-  &__indicator-separator,
-  &__input-container {
+  &__indicator-separator {
     display: none !important;
   }
 
-  &__menu,
-  &__menu-list {
-    max-height: 300px !important;
+  &__input-container {
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    color: var(--secondary-text) !important;
+}
 
-    background: #FFFFFF !important;
-    border-radius: 10px !important;
-  }
+&__menu,
+&__menu-list {
+max-height: 300px !important;
 
-  &__menu-list {
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
+background: var(--bgc-action) !important;
+border-radius: 10px !important;
+}
 
-    overflow-y: scroll !important;
-  }
+&__menu-list {
+padding-top: 20px !important;
+padding-bottom: 20px !important;
 
-  &__menu-list::-webkit-scrollbar {
-    width: 0;
-  }
+overflow-y: scroll !important;
+}
 
-  &__option {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+&__menu-list::-webkit-scrollbar {
+width: 0;
+}
 
-    font-weight: 400 !important;
-    font-size: 16px !important;
-    line-height: 24px !important;
-    color: #8C8C8C !important;
-  }
+&__option {
+padding-left: 20px !important;
+padding-right: 20px !important;
 
-  &__option--is-focused {
-    background-color: var(--accent-color-light) !important;
-  }
+font-weight: 400 !important;
+font-size: 16px !important;
+line-height: 24px !important;
+color: var(--secondary-text) !important;
+}
 
-  &__option--is-selected {
-    color: #FFFFFF !important;
-    background-color: var(--accent-color) !important;
-  }
+&__option--is-focused {
+background-color: var(--accent-color-light) !important;
+}
+
+&__option--is-selected {
+color: var(--white) !important;
+background-color: var(--accent-color) !important;
+}
 }
 
 .customSelectBreeds {
-  &__control {
-    min-width: 226px !important;
-  }
+&__control {
+min-width: 226px !important;
+}
 }

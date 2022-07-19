@@ -45,3 +45,8 @@ export enum TypeModal {
   Dislike = 'Dislikes',
   Favorites = 'Favorites',
 }
+
+export enum SortType {
+  Asc = 'Asc',
+  Desc = 'Desc',
+}

@@ -4,22 +4,47 @@ import Navigation from '../../components/Navigation/Navigation';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
 import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
-
-import styles from './Breeds.module.scss';
 import {BreedInfo} from '../../types/types';
 import {getBreeds} from '../../api/requests';
 import SortBreeds from '../../components/SortBreeds/SortBreeds';
+import {getSelectedBreed, getSortedBreedsName} from '../../utils/utils';
+import {SortType} from '../../constants/constans';
+import {SingleValue} from 'react-select';
+import NoItemFound from '../../components/NoItemFound/NoItemFound';
+
+import styles from './Breeds.module.scss';
 
 function Breeds() {
   const [breeds, setBreeds] = useState<BreedInfo[]>([]);
+  const [breedsOptions, setBreedsOptions] = useState<BreedInfo[]>([]);
+  const [typeSort, setSortType] = useState<string>(SortType.Asc);
+  const [selectedBreed, setSelectedBreed] = useState<number>();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getBreeds();
-      setBreeds(data);
+      setBreedsOptions(data);
+      const sortDataName = getSortedBreedsName(data, typeSort);
+
+      if (selectedBreed) {
+        const sortData = getSelectedBreed(sortDataName, selectedBreed);
+        setBreeds(sortData);
+
+        //дописать условие, если не найдено ни одной карточки (setState → в зависимости от значения рисовать плашку)
+      } else {
+        setBreeds(sortDataName);
+      }
     };
     fetchData();
-  }, []);
+  }, [typeSort, selectedBreed]);
+
+  const handleSortButtonClick = (sortType: string) => {
+    setSortType(sortType);
+  };
+
+  const handleSelectButtonClick = (option: SingleValue<{ value: number; label: string; }>) => {
+    setSelectedBreed(option?.value);
+  };
 
   return  (
     <MainLayout >
@@ -28,9 +53,15 @@ function Breeds() {
         <Navigation />
         <PageLayout >
           <PageHeader namePage={'Breeds'} >
-            <SortBreeds breedsInfo={breeds}/>
+            <SortBreeds
+              breedsInfo={breedsOptions}
+              onSortButtonClick={handleSortButtonClick}
+              onSelectButtonClick={handleSelectButtonClick}
+            />
           </PageHeader>
-          <ImagesLayout picturesArray={breeds}/>
+
+          { breeds.length <= 0 ? <NoItemFound /> : <ImagesLayout picturesArray={breeds}/> }
+
         </PageLayout>
       </section>
     </MainLayout>
