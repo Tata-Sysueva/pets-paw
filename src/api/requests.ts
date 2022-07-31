@@ -7,10 +7,14 @@ import {
   Votes
 } from '../types/types';
 import camelcaseKeys from 'camelcase-keys';
+import {stringify} from 'query-string';
 
-export const getBreeds = () =>
-  ApiService.Instance.get<BreedInfo[]>('/v1/breeds')
+export const getBreeds = (params = {}) => {
+  const queryParams = stringify(params);
+
+  return ApiService.Instance.get<BreedInfo[]>(`/v1/breeds/?${queryParams}`)
     .then(({data}) => camelcaseKeys(data));
+};
 
 export const getImageForVoting = () =>
   ApiService.Instance.get<PictureVoting[]>('/v1/images/search')

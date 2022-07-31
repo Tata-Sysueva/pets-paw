@@ -10,16 +10,21 @@ import styles from './SortBreeds.module.scss';
 
 interface SortBreedsProps {
   breedsInfo: BreedInfo[],
-  onSortButtonClick: (sortType: string) => void,
+  onSortButtonClick: (sortType: SortType) => void,
   onSelectButtonClick: (value: SingleValue<{ value: number; label: string; }>) => void,
+  onLimitButtonClick: (value: SingleValue<{ value: undefined | number; label: string; }>) => void,
 }
 
-function SortBreeds({ breedsInfo, onSortButtonClick, onSelectButtonClick }: SortBreedsProps) {
+function SortBreeds({
+  breedsInfo,
+  onSortButtonClick,
+  onSelectButtonClick,
+  onLimitButtonClick }: SortBreedsProps) {
   const limits = [
-    { value: '5', label: 'Limit: 5' },
-    { value: '10', label: 'Limit: 10' },
-    { value: '15', label: 'Limit: 15' },
-    { value: '20', label: 'Limit: 20' },
+    { value: 5, label: 'Limit: 5' },
+    { value: 10, label: 'Limit: 10' },
+    { value: 15, label: 'Limit: 15' },
+    { value: 20, label: 'Limit: 20' },
   ];
 
   const breeds = useMemo(() =>
@@ -43,6 +48,7 @@ function SortBreeds({ breedsInfo, onSortButtonClick, onSelectButtonClick }: Sort
         options={limits}
         placeholder='Limit: 10'
         isSearchable={false}
+        onChange={(option) => onLimitButtonClick(option)}
       />
       <Button
         icon={<SortUp />}

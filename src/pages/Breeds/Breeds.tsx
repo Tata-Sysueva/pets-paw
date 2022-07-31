@@ -7,43 +7,48 @@ import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
 import {BreedInfo} from '../../types/types';
 import {getBreeds} from '../../api/requests';
 import SortBreeds from '../../components/SortBreeds/SortBreeds';
-import {getSelectedBreed, getSortedBreedsName} from '../../utils/utils';
 import {SortType} from '../../constants/constans';
 import {SingleValue} from 'react-select';
 import NoItemFound from '../../components/NoItemFound/NoItemFound';
 
 import styles from './Breeds.module.scss';
 
+type Filter = {
+  sort: SortType,
+  limit: undefined | number,
+  attach_breed: undefined | number,
+}
+
 function Breeds() {
   const [breeds, setBreeds] = useState<BreedInfo[]>([]);
-  const [breedsOptions, setBreedsOptions] = useState<BreedInfo[]>([]);
-  const [typeSort, setSortType] = useState<string>(SortType.Asc);
-  const [selectedBreed, setSelectedBreed] = useState<number>();
+  const [filter, setFilter] = useState<Filter>({
+    sort: SortType.Asc,
+    limit: 10,
+    'attach_breed': undefined,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getBreeds();
-      setBreedsOptions(data);
-      const sortDataName = getSortedBreedsName(data, typeSort);
-
-      if (selectedBreed) {
-        const sortData = getSelectedBreed(sortDataName, selectedBreed);
-        setBreeds(sortData);
-
-        //дописать условие, если не найдено ни одной карточки (setState → в зависимости от значения рисовать плашку)
-      } else {
-        setBreeds(sortDataName);
-      }
+      const data = await getBreeds(filter);
+      setBreeds(data);
     };
     fetchData();
-  }, [typeSort, selectedBreed]);
+  }, [filter]);
 
-  const handleSortButtonClick = (sortType: string) => {
-    setSortType(sortType);
+  const handleSortButtonClick = (sortType: SortType) => {
+    if (sortType === filter.sort) {
+      return;
+    }
+
+    setFilter((prev) => ({ ...prev, sort: sortType }));
   };
 
   const handleSelectButtonClick = (option: SingleValue<{ value: number; label: string; }>) => {
-    setSelectedBreed(option?.value);
+    setFilter((prev) => ({ ...prev, 'attach_breed': option?.value }));
+  };
+
+  const handleLimitButtonClick = (option: SingleValue<{ value: undefined | number; label: string; }>) => {
+    setFilter((prev) => ({ ...prev, limit: option?.value }));
   };
 
   return  (
@@ -54,9 +59,10 @@ function Breeds() {
         <PageLayout >
           <PageHeader namePage={'Breeds'} >
             <SortBreeds
-              breedsInfo={breedsOptions}
+              breedsInfo={breeds}
               onSortButtonClick={handleSortButtonClick}
               onSelectButtonClick={handleSelectButtonClick}
+              onLimitButtonClick={handleLimitButtonClick}
             />
           </PageHeader>
 

@@ -50,7 +50,7 @@
     "classnames": "2.3.1",
     "dayjs": "1.11.3",
     "eslint-config-htmlacademy": "5.1.2",
-    "just-kebab-case": "4.0.3",
+    "query-string": "7.1.1",
     "react-router-dom": "6.3.0",
     "react-select": "5.4.0",
     "react-toastify": "9.0.5",
