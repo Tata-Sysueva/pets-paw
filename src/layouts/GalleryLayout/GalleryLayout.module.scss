@@ -1,0 +1,16 @@
+.imagesWrapper {
+  margin-top: 20px;
+  max-height: 720px;
+  overflow-y: scroll;
+}
+
+.imagesWrapper::-webkit-scrollbar {
+  width: 0;
+}
+
+.container {
+  display: grid;
+  grid-template: repeat(6, 140px) / repeat(3, 200px);
+  gap: 20px;
+  margin-bottom: 20px;
+}

@@ -1,7 +1,7 @@
 import ApiService from './api';
 import {
+  AllPictures,
   BreedInfo, Favorites,
-  PictureVoting,
   Vote,
   VoteReactions,
   Votes
@@ -16,12 +16,15 @@ export const getBreeds = (params = {}) => {
     .then(({data}) => camelcaseKeys(data));
 };
 
-export const getImageForVoting = () =>
-  ApiService.Instance.get<PictureVoting[]>('/v1/images/search')
+export const getImages = (params = {}) => {
+  const queryParams = stringify(params);
+
+  return ApiService.Instance.get<AllPictures[]>(`/v1/images/search/?${queryParams}`)
     .then(({data}) => camelcaseKeys(data));
+};
 
 export const getImageForBreedCard = () =>
-  ApiService.Instance.get<PictureVoting[]>('/v1/images/search?=limit=3')
+  ApiService.Instance.get<AllPictures[]>('/v1/images/search?=limit=3')
     .then(({data}) => camelcaseKeys(data));
 
 export const createVote = (data: VoteReactions) => {

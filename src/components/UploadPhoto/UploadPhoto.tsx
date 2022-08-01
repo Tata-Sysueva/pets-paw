@@ -1,5 +1,6 @@
-import styles from './UploadPhoto.module.scss';
 import UploadPhotoBox from '../UploadPhotoBox/UploadPhotoBox';
+
+import styles from './UploadPhoto.module.scss';
 
 function UploadPhoto() {
   return (

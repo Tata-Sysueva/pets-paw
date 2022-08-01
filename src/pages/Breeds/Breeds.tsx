@@ -35,17 +35,17 @@ function Breeds() {
     fetchData();
   }, [filter]);
 
-  const handleSortButtonClick = (sortType: SortType) => {
-    if (sortType === filter.sort) {
-      return;
-    }
-
-    setFilter((prev) => ({ ...prev, sort: sortType }));
-  };
-
-  const handleSelectButtonClick = (option: SingleValue<{ value: number; label: string; }>) => {
-    setFilter((prev) => ({ ...prev, 'attach_breed': option?.value }));
-  };
+  // const handleSortButtonClick = (sortType: SortType) => {
+  //   if (sortType === filter.sort) {
+  //     return;
+  //   }
+  //
+  //   setFilter((prev) => ({ ...prev, sort: sortType }));
+  // };
+  //
+  // const handleSelectButtonClick = (option: SingleValue<{ value: number; label: string; }>) => {
+  //   setFilter((prev) => ({ ...prev, 'attach_breed': option?.value }));
+  // };
 
   const handleLimitButtonClick = (option: SingleValue<{ value: undefined | number; label: string; }>) => {
     setFilter((prev) => ({ ...prev, limit: option?.value }));
@@ -58,12 +58,7 @@ function Breeds() {
         <Navigation />
         <PageLayout >
           <PageHeader namePage={'Breeds'} >
-            <SortBreeds
-              breedsInfo={breeds}
-              onSortButtonClick={handleSortButtonClick}
-              onSelectButtonClick={handleSelectButtonClick}
-              onLimitButtonClick={handleLimitButtonClick}
-            />
+            <SortBreeds onLimitButtonClick={handleLimitButtonClick}/>
           </PageHeader>
 
           { breeds.length <= 0 ? <NoItemFound /> : <ImagesLayout picturesArray={breeds}/> }

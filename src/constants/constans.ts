@@ -49,4 +49,12 @@ export enum TypeModal {
 export enum SortType {
   Asc = 'Asc',
   Desc = 'Desc',
+  Random = 'Random',
+}
+
+export enum MimeTypes {
+  All = 'gif,jpg,png',
+  Static = 'jpg,png',
+  Animated = 'gif',
+
 }
