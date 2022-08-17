@@ -12,13 +12,6 @@ function SortBreeds({onLimitButtonClick }: SortBreedsProps) {
 
   return (
     <div className={styles.wrapper}>
-      {/*<Select*/}
-      {/*  classNamePrefix='customSelectBreeds'*/}
-      {/*  options={breeds}*/}
-      {/*  placeholder='All breeds'*/}
-      {/*  onChange={(option) => onSelectButtonClick(option)}*/}
-      {/*  isSearchable={false}*/}
-      {/*/>*/}
       <Select
         classNamePrefix='customSelectLimit'
         options={limitsBreeds}
@@ -26,26 +19,6 @@ function SortBreeds({onLimitButtonClick }: SortBreedsProps) {
         isSearchable={false}
         onChange={(option) => onLimitButtonClick(option)}
       />
-      {/*<Button*/}
-      {/*  icon={<SortUp />}*/}
-      {/*  size={BtnSize.Square}*/}
-      {/*  variants={[BtnVariant.Special]}*/}
-      {/*  type={'submit'}*/}
-      {/*  element={TypeElement.Button}*/}
-      {/*  onClick={() => onSortButtonClick(SortType.Asc)}*/}
-      {/*>*/}
-      {/*  <span className="visually-hidden">Sort A to Z</span>*/}
-      {/*</Button>*/}
-      {/*<Button*/}
-      {/*  icon={<SortDown />}*/}
-      {/*  size={BtnSize.Square}*/}
-      {/*  variants={[BtnVariant.Special]}*/}
-      {/*  type={'submit'}*/}
-      {/*  element={TypeElement.Button}*/}
-      {/*  onClick={() => onSortButtonClick(SortType.Desc)}*/}
-      {/*>*/}
-      {/*  <span className="visually-hidden">Sort Z to A</span>*/}
-      {/*</Button>*/}
     </div>
   );
 }

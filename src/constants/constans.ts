@@ -56,5 +56,10 @@ export enum MimeTypes {
   All = 'gif,jpg,png',
   Static = 'jpg,png',
   Animated = 'gif',
+}
 
+export enum SizeImage {
+  Small = 'small',
+  Med = 'med',
+  Full = 'full',
 }

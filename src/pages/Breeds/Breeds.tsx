@@ -7,24 +7,22 @@ import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
 import {BreedInfo} from '../../types/types';
 import {getBreeds} from '../../api/requests';
 import SortBreeds from '../../components/SortBreeds/SortBreeds';
-import {SortType} from '../../constants/constans';
 import {SingleValue} from 'react-select';
 import NoItemFound from '../../components/NoItemFound/NoItemFound';
 
 import styles from './Breeds.module.scss';
+import {SizeImage} from '../../constants/constans';
 
 type Filter = {
-  sort: SortType,
   limit: undefined | number,
-  attach_breed: undefined | number,
+  size: string,
 }
 
 function Breeds() {
   const [breeds, setBreeds] = useState<BreedInfo[]>([]);
   const [filter, setFilter] = useState<Filter>({
-    sort: SortType.Asc,
     limit: 10,
-    'attach_breed': undefined,
+    size: SizeImage.Med,
   });
 
   useEffect(() => {
@@ -34,18 +32,6 @@ function Breeds() {
     };
     fetchData();
   }, [filter]);
-
-  // const handleSortButtonClick = (sortType: SortType) => {
-  //   if (sortType === filter.sort) {
-  //     return;
-  //   }
-  //
-  //   setFilter((prev) => ({ ...prev, sort: sortType }));
-  // };
-  //
-  // const handleSelectButtonClick = (option: SingleValue<{ value: number; label: string; }>) => {
-  //   setFilter((prev) => ({ ...prev, 'attach_breed': option?.value }));
-  // };
 
   const handleLimitButtonClick = (option: SingleValue<{ value: undefined | number; label: string; }>) => {
     setFilter((prev) => ({ ...prev, limit: option?.value }));

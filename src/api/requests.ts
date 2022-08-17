@@ -38,7 +38,7 @@ export const deleteFavoriteImage = ({id}:  { id: number | string }) =>
   ApiService.Instance.delete<string | number>(`/v1/favourites/${id}`);
 
 export const getVotes = () =>
-  ApiService.Instance.get<Votes[]>('/v1/votes?limit=2000')
+  ApiService.Instance.get<Votes[]>('/v1/votes?limit=5000')
     .then(({data}) => camelcaseKeys(data));
 
 export const getFavorites = () =>

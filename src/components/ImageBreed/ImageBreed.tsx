@@ -3,7 +3,7 @@ import {BreedInfo} from '../../types/types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../constants/constans';
 
-import styles from './ImageBreedPage.module.scss';
+import styles from './ImageBreed.module.scss';
 
 function ImageBreed({ picture }: {picture: BreedInfo}) {
   const { id, image, name} = picture;

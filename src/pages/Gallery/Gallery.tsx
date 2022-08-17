@@ -4,23 +4,24 @@ import Navigation from '../../components/Navigation/Navigation';
 import PageLayout from '../../layouts/PageLayout/PageLayout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import Button from '../../shared/Button/Button';
-import {BtnSize, BtnVariant, MimeTypes, SortType, TypeElement} from '../../constants/constans';
+import {BtnSize, BtnVariant, MimeTypes, SizeImage, SortType, TypeElement} from '../../constants/constans';
 import {ReactComponent as UploadSvg} from '../../assets/icons/upload.svg';
 import SortGallery from '../../components/SortGallery/SortGallery';
 import {AllPictures, BreedInfo} from '../../types/types';
 import {getBreeds, getImages} from '../../api/requests';
 import NoItemFound from '../../components/NoItemFound/NoItemFound';
-import GalleryLayout from '../../layouts/GalleryLayout/GalleryLayout';
+import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
 import {SingleValue} from 'react-select';
+import ConfirmModal from '../../shared/ConfirmModal/ConfirmModal';
 
 import styles from './Gallery.module.scss';
-import ConfirmModal from '../../shared/ConfirmModal/ConfirmModal';
 
 type Filter = {
   order: string | undefined,
   limit: undefined | number,
   mime_types: undefined | string,
   breed_id: undefined | number,
+  size: string,
 }
 
 function Gallery() {
@@ -32,6 +33,7 @@ function Gallery() {
     limit: 5,
     'mime_types': MimeTypes.Static,
     'breed_id': undefined,
+    size: SizeImage.Med,
   });
 
   useEffect(() => {
@@ -67,15 +69,6 @@ function Gallery() {
     setFilter((prev) => ({ ...prev, 'breed_id': option?.value }));
   };
 
-  const handleResetButtonClick = () => {
-    setFilter({
-      order: SortType.Random,
-      limit: 5,
-      'mime_types': MimeTypes.Static,
-      'breed_id': undefined,
-    });
-  };
-
   return  (
     <MainLayout>
       <section className={styles.containerGallery}>
@@ -101,11 +94,10 @@ function Gallery() {
               onTypeButtonClick={handleTypeButtonClick}
               onSelectButtonClick={handleSelectButtonClick}
               onLimitButtonClick={handleLimitButtonClick}
-              onResetButtonClick={handleResetButtonClick}
             />
           </PageHeader>
 
-          { pictures.length <= 0 ? <NoItemFound /> : <GalleryLayout picturesArray={pictures}/> }
+          { pictures.length <= 0 ? <NoItemFound /> : <ImagesLayout picturesArray={pictures}/> }
 
         </PageLayout>
       </section>

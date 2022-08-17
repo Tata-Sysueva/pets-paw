@@ -61,3 +61,14 @@
   background-color: var(--bgc-time);
   border-radius: 10px;
 }
+
+.imageContainer .image {
+  height: 140px;
+}
+
+.imageContainer:first-child .image,
+.imageContainer:nth-child(3) .image,
+.imageContainer:nth-child(8) .image,
+.imageContainer:nth-child(9) .image {
+  height: 300px;
+}

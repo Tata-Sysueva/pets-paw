@@ -1,16 +1,14 @@
 .imageContainer {
+  display: flex;
+  align-items: center;
   position: relative;
   min-width: 200px;
   min-height: 140px;
   border-radius: 20px;
   overflow: hidden;
-  object-fit: contain;
   background-color: var(--button-bgc-color);
-
-  &:hover .imageHover {
-    display: flex;
-  }
 }
+
 
 .imageContainer:first-child {
   grid-row: 1 / 3;
@@ -34,30 +32,16 @@
 
 .image {
   width: 100%;
-  height: 100%;
+  object-fit: cover;
 }
 
-.imageHover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  background-color: var(--hoverImage);
+.imageContainer .image {
+  height: 140px;
 }
 
-.textHover {
-  display: block;
-  margin: 10px;
-  padding: 5px 42px;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--accent-color);
-  background-color: var(--bgc-time);
-  border-radius: 10px;
+.imageContainer:first-child .image,
+.imageContainer:nth-child(3) .image,
+.imageContainer:nth-child(8) .image,
+.imageContainer:nth-child(9) .image {
+  height: 300px;
 }

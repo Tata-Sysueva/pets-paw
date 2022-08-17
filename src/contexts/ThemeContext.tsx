@@ -31,5 +31,6 @@ export function useTheme() {
   if (context === undefined) {
     throw new Error('useContext must be used within a ThemeProvider');
   }
+
   return context;
 }

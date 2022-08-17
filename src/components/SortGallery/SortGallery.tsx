@@ -1,17 +1,14 @@
 import React, {useMemo} from 'react';
 import Select, {SingleValue} from 'react-select';
 import {BreedInfo} from '../../types/types';
-import {ReactComponent as ResetSvg} from '../../assets/icons/reset.svg';
-
-import styles from './SortGallery.module.scss';
 import {
   getBreedsOptions,
   limitsGallery,
   orderGallery,
   typeGallery,
 } from '../../constants/selectOption';
-import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
-import Button from '../../shared/Button/Button';
+
+import styles from './SortGallery.module.scss';
 
 interface SortGalleryProps {
   breedsInfo: BreedInfo[],
@@ -19,7 +16,6 @@ interface SortGalleryProps {
   onTypeButtonClick: (value: SingleValue<{ value: string | undefined; label: string; }>) => void,
   onSelectButtonClick: (value: SingleValue<{ value: number; label: string; }>) => void,
   onLimitButtonClick: (value: SingleValue<{ value: undefined | number; label: string; }>) => void,
-  onResetButtonClick: () => void,
 }
 
 function SortGallery({
@@ -27,8 +23,7 @@ function SortGallery({
   onSortButtonClick,
   onTypeButtonClick,
   onSelectButtonClick,
-  onLimitButtonClick,
-  onResetButtonClick}: SortGalleryProps) {
+  onLimitButtonClick}: SortGalleryProps) {
 
   const breeds = useMemo(() => getBreedsOptions(breedsInfo), [breedsInfo]);
 
@@ -74,18 +69,6 @@ function SortGallery({
           onChange={(option) => onLimitButtonClick(option)}
         />
       </label>
-
-      <Button
-        className={styles.buttonReset}
-        icon={<ResetSvg />}
-        size={BtnSize.Square}
-        variants={[BtnVariant.Primary]}
-        type={'submit'}
-        element={TypeElement.Button}
-        onClick={() => onResetButtonClick()}
-      >
-        <span className="visually-hidden">Sort Z to A</span>
-      </Button>
     </form>
   );
 }

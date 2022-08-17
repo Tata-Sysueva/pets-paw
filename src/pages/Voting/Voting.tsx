@@ -49,7 +49,7 @@ function Voting() {
   const userActionData = useMemo(() =>
     [...votes , ...favorites]
       .slice()
-      .sort((a,b) => +dayjs(b.createdAt) - +dayjs(a.createdAt)),
+      .sort((a, b) => +dayjs(b.createdAt) - +dayjs(a.createdAt)),
   [votes, favorites]);
 
   return  (
