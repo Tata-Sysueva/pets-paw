@@ -10,7 +10,7 @@ export interface Picture {
   width: number,
 }
 
-export interface PictureVoting extends Picture {
+export interface AllPictures extends Picture {
   breeds: BreedInfo[];
 }
 

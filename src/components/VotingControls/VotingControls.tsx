@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ReactComponent as SmileSvg} from '../../assets/icons/smile.svg';
 import {ReactComponent as HeartSvg} from '../../assets/icons/heart.svg';
 import {ReactComponent as SadnessSvg} from '../../assets/icons/sadness.svg';
@@ -16,14 +16,13 @@ import {Favorites} from '../../types/types';
 type VotingControlsProps = {
   imageId: number | string,
   isLoaded: boolean,
-  onClick: (nameAction: string | null | undefined) => void,
+  onClick: () => void,
   favorites: Favorites[],
 }
 
 function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControlsProps) {
   const dispatch = useAppDispatch();
   const closeModal = () => dispatch(hideModal());
-  const [nameAction, setNameAction] = useState<string | null | undefined>('');
 
   const postVote = async (payload: number) => {
     const data = {
@@ -34,7 +33,7 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
     try {
       await createVote(adaptToServer(data));
       closeModal();
-      onClick(nameAction);
+      onClick();
       feedbackMessage(true);
     } catch {
       feedbackMessage(false);
@@ -46,7 +45,7 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
       await addFavoriteImage(adaptToServer({imageId}));
       closeModal();
       feedbackMessage(true);
-      onClick(nameAction);
+      onClick();
     } catch (error) {
       feedbackMessage(false);
     }
@@ -57,7 +56,7 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
       await deleteFavoriteImage({id});
       closeModal();
       feedbackMessage(true);
-      onClick(nameAction);
+      onClick();
     } catch (error) {
       feedbackMessage(false);
     }
@@ -66,16 +65,14 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
   const favoriteActions = () => {
     const favoriteItem = favorites.find((favorite) => favorite.imageId === imageId);
 
-    if (favoriteItem && favoriteItem.id) {
+    if (favoriteItem?.id) {
       deleteFavorites(favoriteItem.id);
     } else {
       addFavorites();
     }
   };
 
-  const onCreateVote = ({ payload, type }: { payload?: number, type?: string | null }) => {
-    setNameAction(type);
-
+  const onCreateVote = ({ payload, type }: { payload?: number, type?: string }) => {
     if (type === TypeModal.Favorites) {
       favoriteActions();
     } else {

@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
+import cn from 'classnames';
 
 import styles from './PageLayout.module.scss';
-import cn from 'classnames';
 
 interface PageWrapperProps {
   children: ReactNode,

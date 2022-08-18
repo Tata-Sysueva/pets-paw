@@ -64,7 +64,7 @@ function VotingModals({ onCreateVote }: VotingModalProps) {
     return () => {
       document.removeEventListener('keydown', onPopupEscKeydown);
     };
-  }, []);
+  }, [closeModal]);
 
   const renderModal = () => {
     switch (type) {

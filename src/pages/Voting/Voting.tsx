@@ -5,7 +5,7 @@ import PageLayout from '../../layouts/PageLayout/PageLayout';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import VotingImage from '../../components/VotingImage/VotingImage';
 import VotingActionList from '../../components/VotingActionList/VotingActionList';
-import {getFavorites, getImageForVoting, getVotes} from '../../api/requests';
+import {getFavorites, getImages, getVotes} from '../../api/requests';
 import {Favorites, Picture, Votes} from '../../types/types';
 import VotingControls from '../../components/VotingControls/VotingControls';
 
@@ -29,22 +29,16 @@ function Voting() {
   }, []);
 
   const fetchPhoto = useCallback(async () => {
-    const data = await getImageForVoting();
+    const data = await getImages();
     setPicture(data[0]);
     setLoad(true);
   }, []);
 
   useEffect(() => {
     fetchPhoto();
-  }, []);
-
-  useEffect(() => {
     fetchVotes();
-  }, []);
-
-  useEffect(() => {
     fetchFavorites();
-  }, []);
+  }, [fetchPhoto, fetchVotes, fetchFavorites]);
 
   const handleButtonClick = () => {
     fetchVotes();
@@ -53,9 +47,9 @@ function Voting() {
   };
 
   const userActionData = useMemo(() =>
-    [...votes ,...favorites]
+    [...votes , ...favorites]
       .slice()
-      .sort((a,b) => +dayjs(b.createdAt) - +dayjs(a.createdAt)),
+      .sort((a, b) => +dayjs(b.createdAt) - +dayjs(a.createdAt)),
   [votes, favorites]);
 
   return  (

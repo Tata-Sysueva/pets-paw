@@ -1,38 +1,33 @@
 import React from 'react';
-import {BreedInfo} from '../../types/types';
-import ImageBreedPage from '../../components/ImageBreedPage/ImageBreedsPage';
+import {AllPictures, BreedInfo} from '../../types/types';
+import ImageGallery from '../../components/ImageGallery/ImageGallery';
+import ImageBreed from '../../components/ImageBreed/ImageBreed';
 
 import styles from './ImagesLayout.module.scss';
-
 
 const IMG_COUNT_PER_STEP = 20;
 
 interface ImagesLayoutProps {
-  picturesArray: BreedInfo[],
+  picturesArray: BreedInfo[] | AllPictures[],
 }
 
 function ImagesLayout( { picturesArray }: ImagesLayoutProps) {
-  // let renderedImgCount = IMG_COUNT_PER_STEP;
-  //
-  // const imageCount = picturesArray.length;
-  // const newRenderedImgCount = Math.min(imageCount, renderedImgCount + IMG_COUNT_PER_STEP);
-  // const pictures = picturesArray.slice(renderedImgCount, newRenderedImgCount);
-  //
-  // renderedImgCount = newRenderedImgCount;
-
+  const getImageComponent = (image: BreedInfo | AllPictures) => 'width' in image
+    ? <ImageGallery key={image.id} picture={image}/>
+    : <ImageBreed key={image.id} picture={image}/>;
 
   return (
     <div className={styles.imagesWrapper}>
       <div className={styles.container}>
         {picturesArray
           .slice(0, 10)
-          .map((picture) => <ImageBreedPage key={picture.id} picture={picture}/>)}
+          .map((picture) => getImageComponent(picture))}
       </div>
       {IMG_COUNT_PER_STEP > 10 &&
         <div className={styles.container}>
           {picturesArray
             .slice(11, 20)
-            .map((picture) => <ImageBreedPage key={picture.id} picture={picture}/>)}
+            .map((picture) => getImageComponent(picture))}
         </div>}
     </div>
   );
