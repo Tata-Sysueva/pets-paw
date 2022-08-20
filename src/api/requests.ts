@@ -44,3 +44,6 @@ export const getVotes = () =>
 export const getFavorites = () =>
   ApiService.Instance.get<Favorites[]>('/v1/favourites')
     .then(({data}) => camelcaseKeys(data));
+
+export const uploadImage = (data: any) =>
+  ApiService.Instance.post<any>('/v1/images/upload', data);

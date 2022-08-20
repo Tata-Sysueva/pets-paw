@@ -27,6 +27,16 @@
   color: var(--secondary-text);
 }
 
-.accentNote {
+.link {
   color: var(--accent-color);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:visited {
+    color: var(--accent-color-dark);
+  }
 }

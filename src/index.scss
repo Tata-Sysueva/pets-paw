@@ -37,6 +37,7 @@ body {
   --accent-color: #FF868E;
   --accent-color03: rgba(255, 134, 142, 0.3);
   --accent-color-light: #FBE0DC;
+  --accent-color-dark: #FF535E;
   --secondary-color: rgba(255, 134, 142, 0.2);
   --secondary-text: #8C8C8C;
   --black: #1D1D1D;
@@ -65,6 +66,7 @@ body[data-theme='light'] {
   --action-btn: var(--white);
 
   --icon-url: url('assets/icons/eye.svg');
+  --upload-bg: url('assets/image/upload-bg.png');
   --button-left: 23px;
 }
 
@@ -78,7 +80,9 @@ body[data-theme='dark'] {
   --bgc-time: var(--black);
   --bgc-action: var(--black05);
   --action-btn: var(--gray-dark);
+
   --icon-url: url('assets/icons/eye-dark.svg');
+  --upload-bg: url('assets/image/upload-bg-dark.png');
   --button-left: 5px;
 }
 

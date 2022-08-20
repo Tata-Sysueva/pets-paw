@@ -14,13 +14,13 @@ interface ModalProps {
 }
 
 function Modal({className = '', children, onClose}: ModalProps) {
-  const mainClasses = cn(styles.modal, className);
+  const contentClasses = cn(styles.content, styles[className]);
 
   return (
-    <div className={mainClasses}>
+    <div className={styles.modal}>
       <div className={styles.overlay} onClick={() => onClose()}/>
 
-      <div className={styles.content}>
+      <div className={contentClasses}>
         <Button
           icon={<CloseSvg />}
           type={'button'}

@@ -8,8 +8,14 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.uploadPhoto {
-  left: calc(50% + 350px);
+.content.uploadPhoto {
+  top: 25px;
+  left: calc(50% + 10px);
+
+  min-width: 680px;
+  padding-bottom: 158px;
+
+  transform: none;
 }
 
 .overlay {

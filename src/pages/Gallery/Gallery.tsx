@@ -12,7 +12,7 @@ import {getBreeds, getImages} from '../../api/requests';
 import NoItemFound from '../../components/NoItemFound/NoItemFound';
 import ImagesLayout from '../../layouts/ImagesLayout/ImagesLayout';
 import {SingleValue} from 'react-select';
-import ConfirmModal from '../../shared/ConfirmModal/ConfirmModal';
+import UploadPhotoModal from '../../components/UploadPhotoModal/UploadPhotoModal';
 
 import styles from './Gallery.module.scss';
 
@@ -60,7 +60,6 @@ function Gallery() {
     setFilter((prev) => ({ ...prev, 'mime_types': option?.value }));
   };
 
-
   const handleLimitButtonClick = (option: SingleValue<{ value: undefined | number; label: string; }>) => {
     setFilter((prev) => ({ ...prev, limit: option?.value }));
   };
@@ -77,7 +76,7 @@ function Gallery() {
         <PageLayout >
           <PageHeader namePage={'Gallery'}>
             <Button
-              className={styles.uploadBtn}
+              className={'uploadBtn'}
               icon={<UploadSvg />}
               type={'button'}
               size={BtnSize.Medium}
@@ -102,11 +101,7 @@ function Gallery() {
         </PageLayout>
       </section>
       {open && (
-        <ConfirmModal
-          title="Are you sure you want to add to like?"
-          onCancel={() => setOpen(false)}
-          onConfirm={() => setOpen(false)}
-        />
+        <UploadPhotoModal onClose={() => setOpen(false)}/>
       )}
     </MainLayout>
   );
