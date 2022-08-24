@@ -2,15 +2,15 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/scss';
-import { BreedInfoMocks} from '../../types/types';
+import { AllPictures } from '../../types/types';
 
 import styles from './Slider.module.scss';
 
 interface SliderProps {
-  infoBreed: BreedInfoMocks,
+  picturesBreed: AllPictures[],
 }
 
-function Slider({ infoBreed }: SliderProps) {
+function Slider({ picturesBreed }: SliderProps) {
   return (
     <Swiper
       modules={[Pagination]}
@@ -22,13 +22,13 @@ function Slider({ infoBreed }: SliderProps) {
         bulletClass: styles.swiperBullet,
       }}
     >
-      {infoBreed.image
-        .map(({url}) => (
-          <SwiperSlide key={Math.floor(Math.random() * (250 - 1 + 1)) + 1}>
+      {picturesBreed && picturesBreed
+        .map(({url, id, breeds}) => (
+          <SwiperSlide key={id}>
             <img
               className={styles.image}
               src={url}
-              alt={infoBreed.name}
+              alt={breeds[0].name}
             />
           </SwiperSlide>
         ))}

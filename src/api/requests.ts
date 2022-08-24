@@ -23,8 +23,8 @@ export const getImages = (params = {}) => {
     .then(({data}) => camelcaseKeys(data));
 };
 
-export const getImageForBreedCard = () =>
-  ApiService.Instance.get<AllPictures[]>('/v1/images/search?=limit=3')
+export const getImageForBreedCard = (id = {}) =>
+  ApiService.Instance.get<AllPictures[]>(`/v1/images/search/?limit=10&breed_id=${id}`)
     .then(({data}) => camelcaseKeys(data));
 
 export const createVote = (data: VoteReactions) => {

@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
-import {AppRoute, BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
+import { useNavigate} from 'react-router-dom';
+import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
 import Button from '../../shared/Button/Button';
 import {ReactComponent as ArrowSvg} from '../../assets/icons/arrow.svg';
 
@@ -11,16 +12,18 @@ interface HeaderPagesProps {
 }
 
 function PageHeader({children, namePage}: HeaderPagesProps ) {
+  const history = useNavigate();
+
   return (
     <div className={styles.headerContent}>
       <Button
         icon={<ArrowSvg />}
         size={BtnSize.Square}
         variants={[BtnVariant.Secondary]}
-        element={TypeElement.Link}
-        link={AppRoute.Promo}
+        element={TypeElement.Button}
+        onClick={() => history(-1)}
       >
-        <span className="visually-hidden" >Go to Home</span>
+        <span className="visually-hidden" >Go back</span>
       </Button>
       <Button
         type={'button'}

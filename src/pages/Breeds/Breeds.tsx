@@ -8,10 +8,10 @@ import {BreedInfo} from '../../types/types';
 import {getBreeds} from '../../api/requests';
 import SortBreeds from '../../components/SortBreeds/SortBreeds';
 import {SingleValue} from 'react-select';
-import NoItemFound from '../../components/NoItemFound/NoItemFound';
 
 import styles from './Breeds.module.scss';
 import {SizeImage} from '../../constants/constans';
+import Spinner from '../../components/Spinner/Spinner';
 
 type Filter = {
   limit: undefined | number,
@@ -47,7 +47,7 @@ function Breeds() {
             <SortBreeds onLimitButtonClick={handleLimitButtonClick}/>
           </PageHeader>
 
-          { breeds.length <= 0 ? <NoItemFound /> : <ImagesLayout picturesArray={breeds}/> }
+          { breeds.length <= 0 ? <Spinner /> : <ImagesLayout picturesArray={breeds}/> }
 
         </PageLayout>
       </section>
