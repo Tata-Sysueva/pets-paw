@@ -8,101 +8,122 @@ import {ReactComponent as ErrorSvg} from '../../assets/icons/error.svg';
 
 import styles from './UploadPhotoBox.module.scss';
 
+type UploadFormProps = {
+  onDragStart: (evt: React.DragEvent<HTMLLabelElement>) => void,
+  onDragLeave: (evt: React.DragEvent<HTMLLabelElement>) => void,
+  onDragOver: (evt: React.DragEvent<HTMLLabelElement>) => void,
+  onDrop: (evt: React.DragEvent<HTMLLabelElement>) => void,
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void,
+}
+
+function UploadForm ({
+  onDragStart,
+  onDragLeave,
+  onDragOver,
+  onDrop,
+  onChange,
+}: UploadFormProps) {
+  return(
+    <form
+      method="post"
+      encType="multipart/form-data"
+      className={styles.photoContainer}
+    >
+      <label
+        htmlFor={'uploadPhoto'}
+        onDragStart={onDragStart}
+        onDragLeave={onDragLeave}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+      >
+        <input
+          id={'uploadPhoto'}
+          type={'file'}
+          hidden
+          multiple
+          onChange={onChange}
+        />
+        <b className={styles.accent}>Drag here</b>&nbsp;your file or&nbsp;
+        <b className={styles.accent}>Click here</b>&nbsp;to upload
+      </label>
+    </form>
+  );
+}
+
 function UploadPhotoBox() {
-  const [drag, setDrag] = useState(true);
+  const [isDragging, setIsDragging] = useState(true);
   const [note, setNote] = useState<string | string[]>('No file selected');
   const [url, setUrl] = useState<string>('');
-  const [photo, setPhoto] = useState<any | null>();
-  const [isUpload, setUpload] = useState(false);
-  const [noteUpload, setNoteUpload] = useState('Upload photo');
+  const [data, setData] = useState<any | null>();
+  const [isUploading, setIsUploading] = useState(false);
+  const [isUpload, setIsUpload] = useState(false);
   const [isError, setError] = useState(false);
 
-  function UploadForm() {
-    return(
-      <form
-        method="post"
-        encType="multipart/form-data"
-        className={styles.photoContainer}
-      >
-        <label
-          htmlFor={'uploadPhoto'}
-          onDragStart={(evt) => dragStartHandler(evt)}
-          onDragLeave={(evt) => dragLeaveHandler(evt)}
-          onDragOver={(evt) => dragStartHandler(evt)}
-          onDrop={(evt) => dropHandler(evt)}
-        >
-          <input
-            id={'uploadPhoto'}
-            type={'file'}
-            hidden
-            multiple
-            onChange={(evt) => inputChangeHandler(evt)}
-          />
-          <b className={styles.accent}>Drag here</b>&nbsp;your file or&nbsp;
-          <b className={styles.accent}>Click here</b>&nbsp;to upload
-        </label>
-      </form>
-    );
-  }
-
-  const inputChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange= (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
 
     if (evt.target && evt.target.files) {
       const file = evt.target.files[0];
       setNote(`Image File Name: ${file.name}`);
       setUrl(URL.createObjectURL(file));
-      setPhoto(file);
+      setData(file);
     }
 
-    setDrag(false);
+    setIsDragging(false);
   };
 
-  const dragStartHandler = (evt: React.DragEvent<HTMLLabelElement>) => {
+  const handleDragStart = (evt: React.DragEvent<HTMLLabelElement>) => {
     evt.preventDefault();
-    setDrag(true);
+    setIsDragging(true);
   };
 
-  const dragLeaveHandler = (evt: React.DragEvent<HTMLLabelElement>) => {
+  const handleDragLeave = (evt: React.DragEvent<HTMLLabelElement>) => {
     evt.preventDefault();
-    setDrag(false);
+    setIsDragging(false);
   };
 
-  const dropHandler = (evt: React.DragEvent<HTMLLabelElement>) => {
+  const handleDrop = (evt: React.DragEvent<HTMLLabelElement>) => {
     evt.preventDefault();
     const file = evt.dataTransfer.files[0];
-    setDrag(false);
+    setIsDragging(false);
     setNote(`Image File Name: ${file.name}`);
     setUrl(URL.createObjectURL(file));
-    setPhoto(file);
+    setData(file);
   };
 
-  const clickButtonHandler = async () => {
+  const handleButtonClick = async () => {
     const formData = new FormData();
-    formData.append('file', photo);
-
-    setNoteUpload('Uploading...');
+    formData.append('file', data);
 
     try {
+      setIsUploading(true);
       await uploadImage(formData);
       feedbackMessage(true);
-      setUpload(true);
-      setPhoto(null);
+      setIsUploading(false);
+      setIsUpload(true);
+      setData(null);
       setNote('No file selected');
-      setDrag(true);
-      setNoteUpload('Upload photo');
+      setIsDragging(true);
       setError(false);
+      setTimeout(() => setIsUpload(false), 6000);
     } catch {
       feedbackMessage(false);
       setError(true);
-      setUpload(false);
+      setIsUploading(false);
+      setTimeout(() => setError(false), 6000);
     }
   };
 
   return (
     <>
-      {drag || isUpload ?
-        <UploadForm />
+      {isDragging || isUpload ?
+        <UploadForm
+          onDragStart={handleDragStart}
+          onDragLeave={handleDragLeave}
+          onDragOver={handleDragStart}
+          onDrop={handleDrop}
+          onChange={handleChange}
+        />
         :
         <div
           className={styles.photoContainer}
@@ -114,19 +135,19 @@ function UploadPhotoBox() {
         {note}
       </p>
 
-      {(!drag || isError) &&
+      {(!isDragging || isError) &&
         <Button
           type={'submit'}
           size={BtnSize.Medium}
           variants={[BtnVariant.Secondary]}
           element={TypeElement.Button}
           className={'uploadPhotoButton'}
-          onClick={clickButtonHandler}
+          onClick={handleButtonClick}
         >
-          <span>{noteUpload}</span>
+          <span>{isUploading ? 'Uploading...' : 'Upload photo'}</span>
         </Button>}
 
-      {(drag && isUpload) &&
+      {(isDragging && isUpload) &&
         <p className={styles.textConfirm}>
           <TickSvg />
           <span>Thanks for the Upload!</span>
