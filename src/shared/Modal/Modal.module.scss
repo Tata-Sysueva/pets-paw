@@ -1,8 +1,10 @@
 .modal {
   position: fixed;
   z-index: 99;
+
   height: 100vh;
   padding: 30px;
+
   overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -38,11 +40,4 @@
   border-radius: 20px;
   background-color: var(--modal-bg-color);
 }
-
-.closeButton {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
 

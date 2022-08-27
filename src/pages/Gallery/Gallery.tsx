@@ -68,17 +68,23 @@ function Gallery() {
     setFilter((prev) => ({ ...prev, 'breed_id': option?.value }));
   };
 
+  if(open){
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'unset';
+  }
+
   return  (
     <MainLayout>
       <section className={styles.containerGallery}>
         <h2 className="visually-hidden">Gallery page</h2>
         <Navigation />
         <PageLayout >
-          <PageHeader namePage={'Gallery'}>
+          <PageHeader namePage="Gallery">
             <Button
-              className={'uploadBtn'}
+              className="uploadBtn"
               icon={<UploadSvg />}
-              type={'button'}
+              type="button"
               size={BtnSize.Medium}
               variants={[BtnVariant.Secondary]}
               element={TypeElement.Button}

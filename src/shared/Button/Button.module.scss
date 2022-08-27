@@ -129,6 +129,7 @@
 
 .uploadPhotoButton {
   @extend .namePage;
+  margin-bottom: 10px;
   padding-top: 12px;
   padding-bottom: 12px;
   font-size: 12px;
@@ -137,4 +138,10 @@
   &:hover {
     opacity: 0.4;
   }
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

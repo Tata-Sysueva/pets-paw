@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import Button from '../../shared/Button/Button';
-import {BtnSize, BtnVariant, TypeElement} from '../../constants/constans';
+import {BtnSize, BtnVariant, TIMEOUT_MESSAGE, TypeElement} from '../../constants/constans';
 import {uploadImage} from '../../api/requests';
-import {feedbackMessage} from '../../utils/utils';
+import {showFeedbackMessage} from '../../utils/utils';
 import {ReactComponent as TickSvg} from '../../assets/icons/tick.svg';
 import {ReactComponent as ErrorSvg} from '../../assets/icons/error.svg';
+import cn from 'classnames';
 
 import styles from './UploadPhotoBox.module.scss';
 
@@ -26,7 +27,7 @@ function UploadForm ({
   return(
     <form
       method="post"
-      encType="multipart/form-data"
+      encType="multipart/form-photoFile"
       className={styles.photoContainer}
     >
       <label
@@ -51,12 +52,9 @@ function UploadForm ({
 }
 
 function UploadPhotoBox() {
-  const [isDragging, setIsDragging] = useState(true);
-  const [note, setNote] = useState<string | string[]>('No file selected');
-  const [url, setUrl] = useState<string>('');
-  const [data, setData] = useState<any | null>();
+  const [photoFile, setPhotoFile] = useState<File | null>();
   const [isUploading, setIsUploading] = useState(false);
-  const [isUpload, setIsUpload] = useState(false);
+  const [isSuccessUpload, setIsSuccessUpload] = useState(false);
   const [isError, setError] = useState(false);
 
   const handleChange= (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,90 +62,95 @@ function UploadPhotoBox() {
 
     if (evt.target && evt.target.files) {
       const file = evt.target.files[0];
-      setNote(`Image File Name: ${file.name}`);
-      setUrl(URL.createObjectURL(file));
-      setData(file);
+      setPhotoFile(file);
     }
-
-    setIsDragging(false);
   };
 
-  const handleDragStart = (evt: React.DragEvent<HTMLLabelElement>) => {
+  const handleDrag = (evt: React.DragEvent<HTMLLabelElement>) => {
     evt.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (evt: React.DragEvent<HTMLLabelElement>) => {
-    evt.preventDefault();
-    setIsDragging(false);
   };
 
   const handleDrop = (evt: React.DragEvent<HTMLLabelElement>) => {
     evt.preventDefault();
     const file = evt.dataTransfer.files[0];
-    setIsDragging(false);
-    setNote(`Image File Name: ${file.name}`);
-    setUrl(URL.createObjectURL(file));
-    setData(file);
+    setPhotoFile(file);
   };
 
   const handleButtonClick = async () => {
     const formData = new FormData();
-    formData.append('file', data);
+    if(photoFile) {
+      formData.append('file', photoFile);
+    }
 
     try {
       setIsUploading(true);
       await uploadImage(formData);
-      feedbackMessage(true);
+      showFeedbackMessage(true);
       setIsUploading(false);
-      setIsUpload(true);
-      setData(null);
-      setNote('No file selected');
-      setIsDragging(true);
+      setIsSuccessUpload(true);
+      setPhotoFile(null);
       setError(false);
-      setTimeout(() => setIsUpload(false), 6000);
+      setTimeout(() => setIsSuccessUpload(false), TIMEOUT_MESSAGE);
     } catch {
-      feedbackMessage(false);
+      showFeedbackMessage(false);
       setError(true);
       setIsUploading(false);
-      setTimeout(() => setError(false), 6000);
+      setTimeout(() => setError(false), TIMEOUT_MESSAGE);
     }
   };
 
+  const handleClean = () => {
+    setPhotoFile(null);
+  };
+
+  const classes = cn(styles.photoContainer, {
+    [styles.error]: isError,
+  });
+
   return (
     <>
-      {isDragging || isUpload ?
+      {!photoFile ? (
         <UploadForm
-          onDragStart={handleDragStart}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragStart}
+          onDragStart={handleDrag}
+          onDragLeave={handleDrag}
+          onDragOver={handleDrag}
           onDrop={handleDrop}
           onChange={handleChange}
         />
-        :
-        <div
-          className={styles.photoContainer}
-        >
-          <img src={url} alt="UploadPhoto"/>
-        </div>}
+      ) : (
+        <div className={classes}>
+          <img src={URL.createObjectURL(photoFile)} alt="UploadPhoto"/>
+        </div>
+      )}
 
       <p className={styles.note}>
-        {note}
+        {photoFile ? `Image File Name: ${photoFile.name}` : 'No file selected'}
       </p>
 
-      {(!isDragging || isError) &&
-        <Button
-          type={'submit'}
-          size={BtnSize.Medium}
-          variants={[BtnVariant.Secondary]}
-          element={TypeElement.Button}
-          className={'uploadPhotoButton'}
-          onClick={handleButtonClick}
-        >
-          <span>{isUploading ? 'Uploading...' : 'Upload photo'}</span>
-        </Button>}
+      {(photoFile && !isError) &&
+        <>
+          <Button
+            type="submit"
+            size={BtnSize.Medium}
+            variants={[BtnVariant.Secondary]}
+            element={TypeElement.Button}
+            className="uploadPhotoButton"
+            onClick={handleButtonClick}
+            disabled={isUploading}
+          >
+            <span>{isUploading ? 'Uploading...' : 'Upload photo'}</span>
+          </Button>
 
-      {(isDragging && isUpload) &&
+          <button
+            className={styles.buttonReset}
+            onClick={handleClean}
+            disabled={isUploading}
+          >
+            Reset photo
+          </button>
+        </>}
+
+      {isSuccessUpload &&
         <p className={styles.textConfirm}>
           <TickSvg />
           <span>Thanks for the Upload!</span>

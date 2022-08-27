@@ -23,12 +23,12 @@ function Modal({className = '', children, onClose}: ModalProps) {
       <div className={contentClasses}>
         <Button
           icon={<CloseSvg />}
-          type={'button'}
+          type="button"
           size={BtnSize.Square}
           variants={[BtnVariant.Primary]}
           element={TypeElement.Button}
           onClick={onClose}
-          className={styles.closeButton}
+          className="closeButton"
         >
           <span className="visually-hidden">Close modal</span>
         </Button>

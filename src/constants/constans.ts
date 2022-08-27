@@ -1,3 +1,5 @@
+export const TIMEOUT_MESSAGE = 5000;
+
 export enum AppRoute {
   Promo = '/',
   Voting = '/voting',

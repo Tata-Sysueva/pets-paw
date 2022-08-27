@@ -24,7 +24,7 @@ export const sortedVotes = (voteArray: Votes[]) => {
   return copiedVotes;
 };
 
-export const feedbackMessage = (isSuccess: boolean) => {
+export const showFeedbackMessage = (isSuccess: boolean) => {
   const options = {
     position: toast.POSITION.TOP_CENTER,
     autoClose: 2000,
