@@ -1,13 +1,19 @@
 import React from 'react';
-import { BreedInfoMocks as BreedInfoType} from '../../types/types';
+import { AllPictures } from '../../types/types';
 
 import styles from './BreedInfo.module.scss';
+import Spinner from '../Spinner/Spinner';
+import camelcaseKeys from 'camelcase-keys';
 
 interface BreedInfoProps {
-  breed: BreedInfoType,
+  infoBreed: AllPictures,
 }
 
-function BreedInfo({ breed }: BreedInfoProps) {
+function BreedInfo({ infoBreed }: BreedInfoProps) {
+  if (!infoBreed) {
+    return <Spinner />;
+  }
+
   const {
     name,
     bredFor,
@@ -15,7 +21,7 @@ function BreedInfo({ breed }: BreedInfoProps) {
     height,
     weight,
     lifeSpan
-  } = breed;
+  } = camelcaseKeys(infoBreed.breeds[0]);
 
   return (
     <div className={styles.container}>

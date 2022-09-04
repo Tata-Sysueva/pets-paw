@@ -48,7 +48,7 @@ function Button({
       [styles.secondary]: variants.includes(BtnVariant.Secondary),
       [styles.special]: variants.includes(BtnVariant.Special),
     },
-    className,
+    styles[className],
   );
 
   const handleActionClick = (evt: MouseEvent<ContainerElement>) => {

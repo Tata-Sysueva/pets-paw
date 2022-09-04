@@ -4,7 +4,7 @@ import {ReactComponent as HeartSvg} from '../../assets/icons/heart.svg';
 import {ReactComponent as SadnessSvg} from '../../assets/icons/sadness.svg';
 import {TypeModal} from '../../constants/constans';
 import {addFavoriteImage, createVote, deleteFavoriteImage} from '../../api/requests';
-import {adaptToServer, feedbackMessage} from '../../utils/utils';
+import {adaptToServer, showFeedbackMessage} from '../../utils/utils';
 import VotingModals from './VotingModals/VotingModals';
 import {hideModal, showModal} from '../../store/modalSlice/modalSlice';
 import {useAppDispatch} from '../../hooks';
@@ -34,9 +34,9 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
       await createVote(adaptToServer(data));
       closeModal();
       onClick();
-      feedbackMessage(true);
+      showFeedbackMessage(true);
     } catch {
-      feedbackMessage(false);
+      showFeedbackMessage(false);
     }
   };
 
@@ -44,10 +44,10 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
     try {
       await addFavoriteImage(adaptToServer({imageId}));
       closeModal();
-      feedbackMessage(true);
+      showFeedbackMessage(true);
       onClick();
     } catch (error) {
-      feedbackMessage(false);
+      showFeedbackMessage(false);
     }
   };
 
@@ -55,10 +55,10 @@ function VotingControls({ imageId, isLoaded, onClick, favorites }: VotingControl
     try {
       await deleteFavoriteImage({id});
       closeModal();
-      feedbackMessage(true);
+      showFeedbackMessage(true);
       onClick();
     } catch (error) {
-      feedbackMessage(false);
+      showFeedbackMessage(false);
     }
   };
 

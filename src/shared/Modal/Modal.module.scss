@@ -1,15 +1,23 @@
 .modal {
   position: fixed;
   z-index: 99;
+
   height: 100vh;
   padding: 30px;
+
   overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-.uploadPhoto {
-  left: calc(50% + 350px);
+.content.uploadPhoto {
+  top: 25px;
+  left: calc(50% + 10px);
+
+  min-width: 680px;
+  padding-bottom: 158px;
+
+  transform: none;
 }
 
 .overlay {
@@ -32,11 +40,4 @@
   border-radius: 20px;
   background-color: var(--modal-bg-color);
 }
-
-.closeButton {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
 

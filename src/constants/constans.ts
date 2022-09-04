@@ -1,3 +1,5 @@
+export const TIMEOUT_MESSAGE = 5000;
+
 export enum AppRoute {
   Promo = '/',
   Voting = '/voting',
@@ -31,7 +33,7 @@ export enum TextModal {
   AddLikes = 'Are you sure you want to add to like?',
   AddFavorites = 'Are you sure you want to add to favorites?',
   AddDislikes = 'Are you sure you want to add to dislikes?',
-  Success = 'Thanks for your vote!',
+  Success = 'Great job!',
   Error = 'Something went wrong. Try again',
 }
 

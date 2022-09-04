@@ -7,7 +7,7 @@ function UploadPhoto() {
     <div className={styles.wrapper}>
       <h2 className={styles.title}>Upload a .jpg or .png Dog Image</h2>
       <p className={styles.description}>
-        Any uploads must comply with the <span className={styles.accentNote}>upload guidelines</span> or face deletion.
+        Any uploads must comply with the <a href={'https://www.thedogapi.com/privacy'} className={styles.link}>upload guidelines</a> or face deletion.
       </p>
       <UploadPhotoBox />
     </div>
