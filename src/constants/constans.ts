@@ -1,7 +1,7 @@
 export const TIMEOUT_MESSAGE = 5000;
 
 export enum AppRoute {
-  Promo = '/',
+  Promo = 'pets-paw/',
   Voting = '/voting',
   Breeds = '/breeds',
   Gallery = '/gallery',
