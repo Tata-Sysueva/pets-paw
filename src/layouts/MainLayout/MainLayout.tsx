@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import Home from '../../pages/Home/Home';
+import Home from '../../pages/Main/Main';
 
 import styles from './MainLayout.module.scss';
 

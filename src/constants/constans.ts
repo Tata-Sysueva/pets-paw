@@ -8,6 +8,7 @@ export enum AppRoute {
   Likes = '/likes',
   Favorites = '/favorites',
   Dislikes = '/dislikes',
+  SignIn = '/login',
 }
 
 export enum BtnSize {

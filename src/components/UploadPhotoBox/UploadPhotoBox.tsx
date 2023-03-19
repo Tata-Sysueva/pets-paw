@@ -60,7 +60,7 @@ function UploadPhotoBox() {
   const handleChange= (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
 
-    if (evt.target && evt.target.files) {
+    if (evt.target && evt.target.files && evt.target.files.length !== 0) {
       const file = evt.target.files[0];
       setPhotoFile(file);
     }
