@@ -11,7 +11,7 @@ import BreedCard from '../../pages/BreedCard/BreedCard';
 import { store } from '../../store';
 import {Provider} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
-import SingIn from '../../pages/SingIn/SingIn';
+
 
 function App() {
   return (
@@ -28,7 +28,6 @@ function App() {
             </Route>
             <Route path={AppRoute.Gallery} element={<Gallery />} />
             <Route path="*" element={<NotFoundScreen />} />
-            <Route path={AppRoute.SignIn} element={<SingIn />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

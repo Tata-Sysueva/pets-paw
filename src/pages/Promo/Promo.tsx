@@ -5,7 +5,7 @@ import styles from './Promo.module.scss';
 
 function Promo() {
   return  (
-    <MainLayout >
+    <MainLayout>
       <div className={styles.wrapper}>
         <h2 className="visually-hidden">Promo</h2>
       </div>

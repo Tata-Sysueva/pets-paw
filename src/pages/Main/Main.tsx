@@ -4,7 +4,6 @@ import Menu from '../../components/Menu/Menu';
 import Header from '../../components/Header/Header';
 
 import styles from './Main.module.scss';
-import SingIn from '../SingIn/SingIn';
 
 function Home(): JSX.Element {
   return (
@@ -18,10 +17,9 @@ function Home(): JSX.Element {
 }
 
 function Main(): JSX.Element {
-  let isAuth;
   return (
     <section className={styles.mainSection}>
-      {isAuth ? <Home /> : <SingIn />}
+      <Home />
     </section>
   );
 }

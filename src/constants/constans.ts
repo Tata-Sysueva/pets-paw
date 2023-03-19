@@ -1,14 +1,13 @@
 export const TIMEOUT_MESSAGE = 5000;
 
 export enum AppRoute {
-  Promo = 'pets-paw/',
+  Promo = '/',
   Voting = '/voting',
   Breeds = '/breeds',
   Gallery = '/gallery',
   Likes = '/likes',
   Favorites = '/favorites',
   Dislikes = '/dislikes',
-  SignIn = '/login',
 }
 
 export enum BtnSize {
